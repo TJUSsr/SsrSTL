@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/SsrSTL.dir/main.cpp.o  -o SsrSTL 
