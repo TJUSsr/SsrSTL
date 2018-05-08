@@ -36,6 +36,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.10.3/CMakeRCCompiler.cmake"
   "CMakeFiles/3.10.3/CMakeSystem.cmake"
   "../utils_alloc/CMakeLists.txt"
+  "../utils_typetraits/CMakeLists.txt"
   )
 
 # The corresponding makefile is:
@@ -48,10 +49,12 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "utils_alloc/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "utils_typetraits/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/SsrSTL_Debug_MinGW.dir/DependInfo.cmake"
   "utils_alloc/CMakeFiles/utils_alloc.dir/DependInfo.cmake"
+  "utils_typetraits/CMakeFiles/utils_typetraits.dir/DependInfo.cmake"
   )

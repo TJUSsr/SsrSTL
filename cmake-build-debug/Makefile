@@ -135,6 +135,19 @@ utils_alloc/fast:
 	$(MAKE) -f utils_alloc\CMakeFiles\utils_alloc.dir\build.make utils_alloc/CMakeFiles/utils_alloc.dir/build
 .PHONY : utils_alloc/fast
 
+#=============================================================================
+# Target rules for targets named utils_typetraits
+
+# Build rule for target.
+utils_typetraits: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 utils_typetraits
+.PHONY : utils_typetraits
+
+# fast build rule for target.
+utils_typetraits/fast:
+	$(MAKE) -f utils_typetraits\CMakeFiles\utils_typetraits.dir\build.make utils_typetraits/CMakeFiles/utils_typetraits.dir/build
+.PHONY : utils_typetraits/fast
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -172,6 +185,7 @@ help:
 	@echo ... SsrSTL_Debug_MinGW
 	@echo ... edit_cache
 	@echo ... utils_alloc
+	@echo ... utils_typetraits
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

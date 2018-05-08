@@ -1,1 +1,1 @@
-add_library(utils_alloc alloc.cpp)
+add_library(utils_alloc alloc.cpp Allocator.h Construct.h)

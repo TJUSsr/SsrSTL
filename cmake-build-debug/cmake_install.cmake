@@ -35,6 +35,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/cmake_install.cmake")
+  include("E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/cmake_install.cmake")
 
 endif()
 

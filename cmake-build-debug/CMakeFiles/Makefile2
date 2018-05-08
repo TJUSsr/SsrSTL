@@ -62,7 +62,7 @@ CMAKE_BINARY_DIR = E:\MyFile\OneDrive\SsrSTL\cmake-build-debug
 # Target rules for target CMakeFiles/SsrSTL_Debug_MinGW.dir
 
 # All Build rule for target.
-CMakeFiles/SsrSTL_Debug_MinGW.dir/all: utils_alloc/CMakeFiles/utils_alloc.dir/all
+CMakeFiles/SsrSTL_Debug_MinGW.dir/all:
 	$(MAKE) -f CMakeFiles\SsrSTL_Debug_MinGW.dir\build.make CMakeFiles/SsrSTL_Debug_MinGW.dir/depend
 	$(MAKE) -f CMakeFiles\SsrSTL_Debug_MinGW.dir\build.make CMakeFiles/SsrSTL_Debug_MinGW.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\MyFile\OneDrive\SsrSTL\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target SsrSTL_Debug_MinGW"
@@ -75,7 +75,7 @@ all: CMakeFiles/SsrSTL_Debug_MinGW.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SsrSTL_Debug_MinGW.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\MyFile\OneDrive\SsrSTL\cmake-build-debug\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\MyFile\OneDrive\SsrSTL\cmake-build-debug\CMakeFiles 2
 	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/SsrSTL_Debug_MinGW.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\MyFile\OneDrive\SsrSTL\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/SsrSTL_Debug_MinGW.dir/rule
@@ -147,6 +147,61 @@ utils_alloc/CMakeFiles/utils_alloc.dir/clean:
 
 # clean rule for target.
 clean: utils_alloc/CMakeFiles/utils_alloc.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory utils_typetraits
+
+# Convenience name for "all" pass in the directory.
+utils_typetraits/all: utils_typetraits/CMakeFiles/utils_typetraits.dir/all
+
+.PHONY : utils_typetraits/all
+
+# Convenience name for "clean" pass in the directory.
+utils_typetraits/clean: utils_typetraits/CMakeFiles/utils_typetraits.dir/clean
+
+.PHONY : utils_typetraits/clean
+
+# Convenience name for "preinstall" pass in the directory.
+utils_typetraits/preinstall:
+
+.PHONY : utils_typetraits/preinstall
+
+#=============================================================================
+# Target rules for target utils_typetraits/CMakeFiles/utils_typetraits.dir
+
+# All Build rule for target.
+utils_typetraits/CMakeFiles/utils_typetraits.dir/all:
+	$(MAKE) -f utils_typetraits\CMakeFiles\utils_typetraits.dir\build.make utils_typetraits/CMakeFiles/utils_typetraits.dir/depend
+	$(MAKE) -f utils_typetraits\CMakeFiles\utils_typetraits.dir\build.make utils_typetraits/CMakeFiles/utils_typetraits.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\MyFile\OneDrive\SsrSTL\cmake-build-debug\CMakeFiles --progress-num= "Built target utils_typetraits"
+.PHONY : utils_typetraits/CMakeFiles/utils_typetraits.dir/all
+
+# Include target in all.
+all: utils_typetraits/CMakeFiles/utils_typetraits.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+utils_typetraits/CMakeFiles/utils_typetraits.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\MyFile\OneDrive\SsrSTL\cmake-build-debug\CMakeFiles 0
+	$(MAKE) -f CMakeFiles\Makefile2 utils_typetraits/CMakeFiles/utils_typetraits.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\MyFile\OneDrive\SsrSTL\cmake-build-debug\CMakeFiles 0
+.PHONY : utils_typetraits/CMakeFiles/utils_typetraits.dir/rule
+
+# Convenience name for target.
+utils_typetraits: utils_typetraits/CMakeFiles/utils_typetraits.dir/rule
+
+.PHONY : utils_typetraits
+
+# clean rule for target.
+utils_typetraits/CMakeFiles/utils_typetraits.dir/clean:
+	$(MAKE) -f utils_typetraits\CMakeFiles\utils_typetraits.dir\build.make utils_typetraits/CMakeFiles/utils_typetraits.dir/clean
+.PHONY : utils_typetraits/CMakeFiles/utils_typetraits.dir/clean
+
+# clean rule for target.
+clean: utils_typetraits/CMakeFiles/utils_typetraits.dir/clean
 
 .PHONY : clean
 

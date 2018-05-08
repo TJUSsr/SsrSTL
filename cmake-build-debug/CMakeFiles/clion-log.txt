@@ -1,4 +1,6 @@
 "D:\Clion\CLion 2018.1.2\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" E:\MyFile\OneDrive\SsrSTL
 -- Configuring done
+CMake Error: Cannot determine link language for target "utils_typetraits".
+CMake Error: CMake can not determine linker language for target: utils_typetraits
 -- Generating done
 -- Build files have been written to: E:/MyFile/OneDrive/SsrSTL/cmake-build-debug
