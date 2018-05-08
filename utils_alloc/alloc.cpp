@@ -5,6 +5,7 @@
 namespace SSRSTL{
     char* alloc::start_free=nullptr;
     char* alloc::end_free=nullptr;
+    size_t alloc::heap_size=0;
     //贯彻了Cpp的RAII思想，用时资源初始化。
     alloc::obj* alloc::free_list[alloc::SsrFreeLists::NumOfFreeLists]={nullptr};
 
@@ -28,20 +29,104 @@ namespace SSRSTL{
         else{//小块内存直接返回给内存池
             size_t index=FREELIST_INDEX(bytes);
             //利用static_cast<>()完成强制类型转换
-            obj* temp= static_cast<obj*>(ptr);
-            temp->next=
-            free_list[]
-
+            auto temp= static_cast<obj*>(ptr);
+            temp->next=free_list[index];
+            free_list[index]->next=temp;
         }
     }
     void* alloc::reallocate(void *ptr, size_t old_sz, size_t new_sz) {
-
+        //当容器需要扩容时会调用reallocate()函数
+        deallocate(ptr,old_sz);
+        ptr=allocate(new_sz);
+        return ptr;
     }
     void* alloc::refill(size_t n) {
-
+        size_t nobjs=SsrObjs ::NumOfObjs;
+        //从内存池取内存
+        char* ptr=chunk_alloc(n,nobjs);
+        obj** my_free_list= nullptr;
+        obj* res= nullptr;
+        obj* current_obj= nullptr;
+        obj* next_obj= nullptr;
+        if(nobjs==1){
+            return ptr;
+        }else{
+            my_free_list=free_list+FREELIST_INDEX(n);
+            res=(obj *) ptr;
+            *my_free_list=next_obj=(obj*)(ptr+n);
+            //将多余的内存放入free_list
+            for(int i=1;i<nobjs;++i){
+                current_obj=next_obj;
+                next_obj=(obj*)((char*)next_obj+n);
+                if(i==nobjs-1){
+                    current_obj->next= nullptr;
+                }else{
+                    current_obj->next=next_obj;
+                }
+            }
+            return res;
+        }
     }
-    char* alloc::chunk_alloc(size_t size, size_t &nobjs) {
-
+    //第二个参数之所以为引用是因为建议申请20个内存块，但是不一定能够申请到20个，利用直接过参数来
+    //告知调用者最终申请了多少内存块
+    //chunk_alloc()函数十分关键，是理解整个内存池的关键
+    /*现在假如要分配一块32B的内存，但free_list[3]所指向的指针为NULL，即空闲链表free_list中没有32B的内存，
+     * 这时候就需要通过下面的_chunk_alloc来分配内存给free_list了。
+     * 默认每次分配是分配20个大小为32B的内存。
+     * 即_chunk_alloc第二个参数传入值为20，但系统不一定能分配20个，所以用的是引用。
+     * _chunk_malloc主要分三种情况来处理：
+     * 1、现有内存池容量满足你的需求：32B * 20个，直接返回给你这么大一块内存；
+     * 2、现有内存池容量不能满足这么多个，即20个，但可以满足1个，那先给你free_list对应项分配一个32B再说；
+     * 3、现有内存池容量连一个都满足不了，那只能利用malloc从堆中分配内存。
+     * 从堆中分配内存时，首先把当前内存池中剩余的一些零碎内存赋给free_list中；
+     * 然后从堆中malloc内存，修改内存池的_start_free、_end_free指针。
+     * (这两个指针分别指向内存池的起始地址和结束地址)。
+     * 再然后递归调用_chunk_malloc函数。
+     */
+    char* alloc::chunk_alloc(size_t bytes, size_t &nobjs) {
+        char* res= nullptr;
+        size_t totalbytes=bytes*nobjs;
+        size_t bytes_left=end_free-start_free;
+        if(bytes_left>=totalbytes){
+            //内存池剩余空间满足需求
+            res=start_free;
+            start_free+=totalbytes;
+            return res;
+        }else if(bytes_left>=bytes){
+            //内存池剩余内存无法满足全部需求
+            //只能满足一个或以上的内存块需求
+            nobjs=bytes_left/bytes;
+            totalbytes=nobjs*bytes;
+            res=start_free;
+            start_free+=totalbytes;
+            return res;
+        }else{
+            //内存池剩余内存一个内存块都无法满足
+            size_t bytes_to_get=2*totalbytes+Round_Up(heap_size>>4);
+            if(bytes_left>0){
+                obj** my_free_list=free_list+FREELIST_INDEX(bytes_left);
+                ((obj*)start_free)->next=*my_free_list;
+                *my_free_list=(obj*) start_free;
+            }
+            start_free=(char*) malloc(bytes_to_get);
+            if(!start_free){
+                //malloc()申请内存失败
+                obj** my_free_list= nullptr;
+                obj* p= nullptr;
+                for(int i=0;i<=SsrMaxBytes::Maxbytes;i+=SsrSize::Size){
+                    my_free_list=free_list+FREELIST_INDEX(i);
+                    p=*my_free_list;
+                    if(p!= nullptr){
+                        *my_free_list=p->next;
+                        start_free=(char*)p;
+                        end_free=start_free+i;
+                        return chunk_alloc(bytes,nobjs);
+                    }
+                }
+            }
+            heap_size+=bytes_to_get;
+            end_free=start_free+bytes_to_get;
+            return chunk_alloc(bytes,nobjs);
+        }
     }
 }
-
