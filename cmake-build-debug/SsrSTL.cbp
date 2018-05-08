@@ -5,203 +5,162 @@
 		<Option title="SsrSTL"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\utils_alloc\;CMake Files\utils_typetraits\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\utils_alloc\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug"/>
+				<Option working_dir="/home/monster/SsrSTL/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug"/>
+				<Option working_dir="/home/monster/SsrSTL/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="SsrSTL_Debug_MinGW">
-				<Option output="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/bin/SsrSTL_Debug_MinGW.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/bin"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/utils_alloc"/>
-					<Add directory="/utils_typetraits"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 SsrSTL_Debug_MinGW"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="SsrSTL_Debug_MinGW/fast">
-				<Option output="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/bin/SsrSTL_Debug_MinGW.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/bin"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/utils_alloc"/>
-					<Add directory="/utils_typetraits"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 SsrSTL_Debug_MinGW/fast"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug"/>
+				<Option working_dir="/home/monster/SsrSTL/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SsrSTL_Debug_Linux">
+				<Option output="/home/monster/SsrSTL/cmake-build-debug/bin/SsrSTL_Debug_Linux" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/monster/SsrSTL/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/utils_alloc"/>
+					<Add directory="/utils_typetraits"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 SsrSTL_Debug_Linux"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SsrSTL_Debug_Linux/fast">
+				<Option output="/home/monster/SsrSTL/cmake-build-debug/bin/SsrSTL_Debug_Linux" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/monster/SsrSTL/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/utils_alloc"/>
+					<Add directory="/utils_typetraits"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 SsrSTL_Debug_Linux/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="utils_alloc">
-				<Option output="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/libutils_alloc.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc"/>
+				<Option output="/home/monster/SsrSTL/cmake-build-debug/utils_alloc/libutils_alloc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/monster/SsrSTL/cmake-build-debug/utils_alloc"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/utils_alloc"/>
 					<Add directory="/utils_typetraits"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 utils_alloc"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 utils_alloc"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="utils_alloc/fast">
-				<Option output="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/libutils_alloc.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc"/>
+				<Option output="/home/monster/SsrSTL/cmake-build-debug/utils_alloc/libutils_alloc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/monster/SsrSTL/cmake-build-debug/utils_alloc"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/utils_alloc"/>
 					<Add directory="/utils_typetraits"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 utils_alloc/fast"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="utils_typetraits">
-				<Option output="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/libutils_typetraits.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/utils_alloc"/>
-					<Add directory="/utils_typetraits"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/Makefile&quot;  VERBOSE=1 utils_typetraits"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="utils_typetraits/fast">
-				<Option output="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/libutils_typetraits.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/utils_alloc"/>
-					<Add directory="/utils_typetraits"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/Makefile&quot;  VERBOSE=1 utils_typetraits/fast"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 utils_alloc/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/monster/SsrSTL/cmake-build-debug/utils_alloc/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/main.cpp">
-			<Option target="SsrSTL_Debug_MinGW"/>
+		<Unit filename="/home/monster/SsrSTL/main.cpp">
+			<Option target="SsrSTL_Debug_Linux"/>
 		</Unit>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/utils_alloc/Allocator.h">
+		<Unit filename="/home/monster/SsrSTL/utils_alloc/Allocator.h">
 			<Option target="utils_alloc"/>
 		</Unit>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/utils_alloc/Construct.h">
+		<Unit filename="/home/monster/SsrSTL/utils_alloc/Construct.h">
 			<Option target="utils_alloc"/>
 		</Unit>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/utils_alloc/alloc.cpp">
+		<Unit filename="/home/monster/SsrSTL/utils_alloc/alloc.cpp">
 			<Option target="utils_alloc"/>
 		</Unit>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/utils_alloc/alloc.h">
+		<Unit filename="/home/monster/SsrSTL/utils_alloc/alloc.h">
 			<Option target="utils_alloc"/>
 		</Unit>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/utils_typetraits/Typetraits.h">
-			<Option target="utils_typetraits"/>
+		<Unit filename="/home/monster/SsrSTL/utils_typetraits/Typetraits.h">
+			<Option target="SsrSTL_Debug_Linux"/>
 		</Unit>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/CMakeLists.txt">
+		<Unit filename="/home/monster/SsrSTL/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/utils_alloc/CMakeLists.txt">
+		<Unit filename="/home/monster/SsrSTL/utils_alloc/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\utils_alloc\"/>
-		</Unit>
-		<Unit filename="E:/MyFile/OneDrive/SsrSTL/utils_typetraits/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\utils_typetraits\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

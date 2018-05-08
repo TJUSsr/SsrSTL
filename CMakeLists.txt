@@ -9,10 +9,10 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 include_directories(${PROJET_SOURCE_DIR}/utils_alloc)
 include_directories(${PROJET_SOURCE_DIR}/utils_typetraits)
 add_subdirectory(utils_alloc)
-add_subdirectory(utils_typetraits)
 
 
-set(SsrSTL main.cpp)
+set(SsrSTL main.cpp
+        utils_typetraits/Typetraits.h)
 
 #生成可执行文件
 add_executable(SsrSTL_${CMAKE_BUILD_TYPE}_${CMAKE_CXX_PLATFORM_ID} ${SsrSTL})

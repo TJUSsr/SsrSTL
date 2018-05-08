@@ -1,9 +1,6 @@
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/CMakeFiles/SsrSTL_Debug_MinGW.dir
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/CMakeFiles/edit_cache.dir
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/CMakeFiles/utils_alloc.dir
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_alloc/CMakeFiles/rebuild_cache.dir
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/CMakeFiles/utils_typetraits.dir
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/CMakeFiles/edit_cache.dir
-E:/MyFile/OneDrive/SsrSTL/cmake-build-debug/utils_typetraits/CMakeFiles/rebuild_cache.dir
+/home/monster/SsrSTL/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/monster/SsrSTL/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/monster/SsrSTL/cmake-build-debug/CMakeFiles/SsrSTL_Debug_Linux.dir
+/home/monster/SsrSTL/cmake-build-debug/utils_alloc/CMakeFiles/edit_cache.dir
+/home/monster/SsrSTL/cmake-build-debug/utils_alloc/CMakeFiles/rebuild_cache.dir
+/home/monster/SsrSTL/cmake-build-debug/utils_alloc/CMakeFiles/utils_alloc.dir
