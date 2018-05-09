@@ -12,7 +12,7 @@ add_subdirectory(utils_alloc)
 
 
 set(SsrSTL main.cpp
-        utils_typetraits/Typetraits.h)
+        utils_typetraits/Typetraits.h utils_iterator/Iterator.h)
 
 #生成可执行文件
 add_executable(SsrSTL_${CMAKE_BUILD_TYPE}_${CMAKE_CXX_PLATFORM_ID} ${SsrSTL})

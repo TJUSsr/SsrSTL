@@ -6,8 +6,15 @@
 #define SSRSTL_CONSTRUCT_H
 
 #include "../utils_typetraits/Typetraits.h"
+#include "../utils_iterator/Iterator.h"
 
 namespace SSRSTL{
+    template <typename T>
+    inline void construct(T* ptr){
+        //调用placement new完成对象的construct
+        new(ptr)T();
+    };
+
     template <typename T1,typename T2>
     inline void construct(T1* ptr,const T2& value){
         //调用placement new完成对象的construct
@@ -34,7 +41,8 @@ namespace SSRSTL{
 
     template <class ForwardIt>
     inline void destroy(ForwardIt first,ForwardIt last){
-        typedef typename _type_traits<ForwardIt>::is_POD_type is_POD_type;
+        typedef typename _iterator_traits<ForwardIt>::value_type value_type;
+        typedef typename _type_traits<value_type >::is_POD_type is_POD_type;
         _destroy(first,last,is_POD_type());
     }
 

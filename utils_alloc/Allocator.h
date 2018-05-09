@@ -70,24 +70,22 @@ namespace SSRSTL{
 
     template <typename T>
     void Allocator<T>::construct(pointer ptr) {
-        new(ptr)value_type();
+        SSRSTL::construct(ptr);
     }
 
     template <typename T>
     void Allocator<T>::construct(pointer ptr,const_reference value) {
-        new(ptr)value_type(value);
+        SSRSTL::construct(ptr,value);
     }
 
     template <typename T>
     void Allocator<T>::destroy(pointer ptr){
-        ptr->~value_type();
+        SSRSTL::destroy(ptr);
     }
 
     template<typename T>
     void Allocator<T>::destroy(pointer first, pointer last) {
-        for(;first!=last;++first){
-            first->~value_type();
-        }
+        SSRSTL::destroy(first,last);
     }
 }
 
