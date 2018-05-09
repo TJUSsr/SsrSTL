@@ -50,7 +50,7 @@ namespace SSRSTL{
         //重载后置++运算符
 
         //返回base_迭代器
-        inline iterator_type Get_base(){ return base_};
+        inline iterator_type Get_base(){ return base_;}
 
 
     private:
