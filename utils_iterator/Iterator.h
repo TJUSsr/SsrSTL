@@ -122,7 +122,8 @@ namespace SSRSTL{
         typedef typename Iterator::iterator_category iterator_category;
         return iterator_category();
     };
-    template <typename Iterator>
+
+    template<typename Iterator>
     static typename Iterator::value_type* value_Type(const Iterator&){
         typedef typename Iterator::value_type value_type;
         return static_cast<value_type *>(nullptr);

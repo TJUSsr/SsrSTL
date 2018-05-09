@@ -156,6 +156,9 @@
 		<Unit filename="/home/monster/SsrSTL/utils_iterator/Iterator.h">
 			<Option target="SsrSTL_Debug_Linux"/>
 		</Unit>
+		<Unit filename="/home/monster/SsrSTL/utils_iterator/ReverseIterator.h">
+			<Option target="SsrSTL_Debug_Linux"/>
+		</Unit>
 		<Unit filename="/home/monster/SsrSTL/utils_typetraits/Typetraits.h">
 			<Option target="SsrSTL_Debug_Linux"/>
 		</Unit>
