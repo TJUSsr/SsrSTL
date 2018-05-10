@@ -1,4 +1,4 @@
-"D:\Clion\CLion 2018.1.2\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" E:\MyFile\OneDrive\SsrSTL
+/home/monster/CLion/clion-2018.1.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/monster/SsrSTL
 -- Configuring done
 -- Generating done
--- Build files have been written to: E:/MyFile/OneDrive/SsrSTL/cmake-build-debug
+-- Build files have been written to: /home/monster/SsrSTL/cmake-build-debug
