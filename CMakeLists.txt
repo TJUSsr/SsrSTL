@@ -3,17 +3,22 @@ cmake_minimum_required(VERSION 3.10)
 #工程的名字SsrSTL
 project(SsrSTL)
 set(CMAKE_CXX_STANDARD 11)
-
 #设置可执行文件生成位置
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
-include_directories(${PROJET_SOURCE_DIR}/utils_alloc)
-include_directories(${PROJET_SOURCE_DIR}/utils_typetraits)
-add_subdirectory(utils_alloc)
-
+include_directories(${PROJET_SOURCE_DIR})
 
 set(SsrSTL main.cpp
-        utils_typetraits/Typetraits.h utils_iterator/Iterator.h utils_iterator/ReverseIterator.h)
+        ssrstl_lib/spdlog/spdlog.h
+        utils_logs/logger.h
+        utils_logs/logger.cpp
+        utils_alloc/alloc.h
+        utils_alloc/alloc.cpp
+        utils_alloc/Allocator.h
+        utils_alloc/Construct.h
+        utils_typetraits/Typetraits.h
+        utils_iterator/Iterator.h
+        utils_iterator/ReverseIterator.h
+        )
 
 #生成可执行文件
 add_executable(SsrSTL_${CMAKE_BUILD_TYPE}_${CMAKE_CXX_PLATFORM_ID} ${SsrSTL})
-target_link_libraries(SsrSTL_${CMAKE_BUILD_TYPE}_${CMAKE_CXX_PLATFORM_ID} utils_alloc,utils_typetraits)
