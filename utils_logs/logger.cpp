@@ -5,15 +5,7 @@
 
 namespace SSRSTL{
 
-    std::shared_ptr<spdlog::logger> my_logger::instance() {
-        return _instance;
-    }
-
-    my_logger::~my_logger() {
-        std::cout<<"my_logger destroyed"<<std::endl;
-    }
-
-    void my_logger::init() {
+    void init() {
         /*
          *  设置输出级别
          *   typedef enum
@@ -27,12 +19,15 @@ namespace SSRSTL{
          *   off = 6
          *   } level_enum;
          */
-        spdlog::set_level(spdlog::level::info);
-        spdlog::set_pattern("[%^+++%$] [%H:%M:%S %z] [thread %t] %v");
+        size_t q_size = 4096; //queue size must be power of 2
+        spdlog::set_async_mode(q_size);
+        spdlog::set_level(spdlog::level::trace);
+        spdlog::set_pattern("[%^+++%$] [%H:%M:%S %z] %v");
     }
 
-    // Create a file rotating logger with 5mb size max and 3 rotated files
-    std::shared_ptr<spdlog::logger> my_logger::_instance=spdlog::rotating_logger_mt("my_logger", "./log.txt", 1048576 * 5, 3);;
+    std::shared_ptr<spdlog::logger> my_logger=spdlog::daily_logger_mt("my_logger", "./log.txt");
+    std::shared_ptr<spdlog::logger> console=spdlog::stdout_color_mt("console");
+
 }
 
 

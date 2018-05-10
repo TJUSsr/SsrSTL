@@ -1,4 +1,5 @@
 /home/monster/CLion/clion-2018.1.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/monster/SsrSTL
+UNIX 编译设置
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/monster/SsrSTL/cmake-build-debug
