@@ -2,6 +2,7 @@
 // Created by Administrator on 2018/5/10.
 //
 #include "logger.h"
+#define LOGTEXT "./log.txt"
 
 namespace SSRSTL{
 
@@ -25,7 +26,7 @@ namespace SSRSTL{
         spdlog::set_pattern("[%^+++%$] [%H:%M:%S %z] %v");
     }
 
-    std::shared_ptr<spdlog::logger> my_logger=spdlog::daily_logger_mt("my_logger", "./log.txt");
+    std::shared_ptr<spdlog::logger> my_logger=spdlog::daily_logger_mt("my_logger", LOGTEXT);
     std::shared_ptr<spdlog::logger> console=spdlog::stdout_color_mt("console");
 
 }

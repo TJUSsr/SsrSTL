@@ -102,6 +102,9 @@
 		<Unit filename="/home/monster/SsrSTL/utils_alloc/alloc.h">
 			<Option target="SsrSTL_Debug_Linux"/>
 		</Unit>
+		<Unit filename="/home/monster/SsrSTL/utils_container/vector_ssr.h">
+			<Option target="SsrSTL_Debug_Linux"/>
+		</Unit>
 		<Unit filename="/home/monster/SsrSTL/utils_iterator/Iterator.h">
 			<Option target="SsrSTL_Debug_Linux"/>
 		</Unit>
