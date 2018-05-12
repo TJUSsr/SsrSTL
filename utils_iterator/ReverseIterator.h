@@ -25,7 +25,7 @@ namespace SSRSTL{
     class reverse_iterator_t{
     public:
         //基于Iterator产生reverse_iterator_t
-        typedef Iterator iterator_type;
+        typedef Iterator                                                    iterator_type;
         typedef typename _iterator_traits<Iterator>::iterator_category      iterator_category;
         typedef typename _iterator_traits<Iterator>::value_type             value_type;
         typedef typename _iterator_traits<Iterator>::reference              reference;
@@ -73,17 +73,9 @@ namespace SSRSTL{
         friend reverse_iterator_t<Iterator> operator+(typename reverse_iterator_t<Iterator>::difference_type n,
         const reverse_iterator_t<Iterator>& rev_it);
 
-        template<typename Iterator>
-        friend reverse_iterator_t<Iterator> operator+(const reverse_iterator_t<Iterator>& rev_it,
-                                                      typename reverse_iterator_t<Iterator>::difference_type n);
-
-        template <typename Iterator>
+       template <typename Iterator>
         friend reverse_iterator_t<Iterator> operator-(typename reverse_iterator_t<Iterator>::difference_type n,
         const reverse_iterator_t<Iterator>& rev_it);
-
-        template<typename Iterator>
-        friend reverse_iterator_t<Iterator> operator-(const reverse_iterator_t<Iterator>& rev_it,
-                                                      typename reverse_iterator_t<Iterator>::difference_type n);
 
         template <typename Iterator>
         friend bool operator==(const reverse_iterator_t<Iterator>& lhs,
@@ -136,75 +128,151 @@ namespace SSRSTL{
     }
 
     template<typename Iterator>
-    iterator_type reverse_iterator_t<Iterator>::Get_base() const { return base_;}
+    typename reverse_iterator_t<Iterator>::iterator_type reverse_iterator_t<Iterator>::Get_base() const {
+        return base_;
+    }
 
     template<typename Iterator>
-    reference reverse_iterator_t<Iterator>::operator*() { return (*cur_);}
+    typename reverse_iterator_t<Iterator>::reference reverse_iterator_t<Iterator>::operator*() { return (*cur_);}
 
     template<typename Iterator>
-    const_reference reverse_iterator_t<Iterator>::operator*() const { return (*cur_);}
+    typename reverse_iterator_t<Iterator>::const_reference reverse_iterator_t<Iterator>::operator*() const { return (*cur_);}
 
     template<typename Iterator>
-    reverse_iterator_t::pointer reverse_iterator_t<Iterator>::operator->() { return &(operator*());}
+    typename reverse_iterator_t<Iterator>::pointer reverse_iterator_t<Iterator>::operator->() { return &(operator*());}
 
     template<typename Iterator>
-    reverse_iterator_t::const_pointer reverse_iterator_t<Iterator>::operator->() const { return &(operator*());}
+    typename reverse_iterator_t<Iterator>::const_pointer reverse_iterator_t<Iterator>::operator->() const { return &(operator*());}
 
     template<typename Iterator>
-    reverse_iterator_t &reverse_iterator_t<Iterator>::operator++() {
+    reverse_iterator_t<Iterator>& reverse_iterator_t<Iterator>::operator++() {
         --base_;
         --cur_;
         return *this;
     }
 
     template<typename Iterator>
-    const reverse_iterator_t reverse_iterator_t<Iterator>::operator++(int) {
+    const reverse_iterator_t<Iterator> reverse_iterator_t<Iterator>::operator++(int) {
         reverse_iterator_t temp=*this;
         ++(*this);
         return temp;
     }
 
     template<typename Iterator>
-    reverse_iterator_t &reverse_iterator_t<Iterator>::operator--() {
+    reverse_iterator_t<Iterator>& reverse_iterator_t<Iterator>::operator--() {
         ++base_;
         ++cur_;
         return *this;
     }
 
     template<typename Iterator>
-    const reverse_iterator_t reverse_iterator_t<Iterator>::operator--(int) {
+    const reverse_iterator_t<Iterator> reverse_iterator_t<Iterator>::operator--(int) {
         reverse_iterator_t temp=*this;
         --(*this);
         return temp;
     }
 
     template<typename Iterator>
-    reference reverse_iterator_t<Iterator>::operator[](reverse_iterator_t::difference_type n) {
+    typename reverse_iterator_t<Iterator>::reference reverse_iterator_t<Iterator>::operator[](reverse_iterator_t::difference_type n) {
         return base_()[-n-1];
     }
 
     template<typename Iterator>
-    reverse_iterator_t reverse_iterator_t<Iterator>::operator+(reverse_iterator_t::difference_type n) const {
+    reverse_iterator_t<Iterator> reverse_iterator_t<Iterator>::operator+(reverse_iterator_t::difference_type n) const {
         auto res=*this;
         res+=n;
         return res;
     }
 
     template<typename Iterator>
-    reverse_iterator_t &reverse_iterator_t<Iterator>::operator+=(reverse_iterator_t::difference_type n) {
+    reverse_iterator_t<Iterator>& reverse_iterator_t<Iterator>::operator+=(reverse_iterator_t::difference_type n) {
         base_=advanceNStep(base_,n, false);
         cur_=advanceNStep(cur_,n, false);
         return *this;
     }
 
     template<typename Iterator>
-    reverse_iterator_t reverse_iterator_t<Iterator>::operator-(reverse_iterator_t::difference_type n) const {
-        return reverse_iterator_t();
+    reverse_iterator_t<Iterator> reverse_iterator_t<Iterator>::operator-(reverse_iterator_t::difference_type n) const {
+        auto res=*this;
+        res-=n;
+        return res;
     }
 
     template<typename Iterator>
-    reverse_iterator_t &reverse_iterator_t<Iterator>::operator-=(reverse_iterator_t::difference_type n) {
-        return <#initializer#>;
+    reverse_iterator_t<Iterator>& reverse_iterator_t<Iterator>::operator-=(reverse_iterator_t::difference_type n) {
+        base_=advanceNStep(base_,n,true);
+        cur_=advanceNStep(cur_,n,true);
+        return *this;
+    }
+
+    template<typename Iterator>
+    reverse_iterator_t<Iterator> operator+(typename reverse_iterator_t<Iterator>::difference_type n, const reverse_iterator_t<Iterator> &rev_it) {
+        return rev_it+n;
+    }
+
+    template<typename Iterator>
+    reverse_iterator_t<Iterator> operator-(long n, const reverse_iterator_t<Iterator> &rev_it) {
+        return rev_it-n;
+    }
+
+    template<typename Iterator>
+    bool operator==(const reverse_iterator_t<Iterator> &lhs, const reverse_iterator_t<Iterator> &rhs) {
+        return lhs.cur_==rhs.cur_;
+    }
+
+    template<typename Iterator>
+    bool operator!=(const reverse_iterator_t<Iterator> &lhs, const reverse_iterator_t<Iterator> &rhs) {
+        return !(lhs.cur_==rhs.cur_);
+    }
+
+    template<typename Iterator>
+    bool operator>(const reverse_iterator_t<Iterator> &lhs, const reverse_iterator_t<Iterator> &rhs) {
+        return lhs.cur_>rhs.cur_;
+    }
+
+    template<typename Iterator>
+    bool operator<(const reverse_iterator_t<Iterator> &lhs, const reverse_iterator_t<Iterator> &rhs) {
+        return lhs.cur_<rhs.cur_;
+    }
+
+    template<typename Iterator>
+    bool operator>=(const reverse_iterator_t<Iterator> &lhs, const reverse_iterator_t<Iterator> &rhs) {
+        return !(lhs.cur_<rhs.cur_);
+    }
+
+    template<typename Iterator>
+    bool operator<=(const reverse_iterator_t<Iterator> &lhs, const reverse_iterator_t<Iterator> &rhs) {
+        return !(lhs.cur_>rhs.cur_);
+    }
+
+    template<typename Iterator>
+    Iterator
+    reverse_iterator_t<Iterator>::advanceNStep(Iterator it, reverse_iterator_t::difference_type n, bool right) {
+        if(!right)
+            n=-n;
+        return advanceNStep(it,n,iterator_category());
+    }
+
+    template<typename Iterator>
+    Iterator reverse_iterator_t<Iterator>::advanceNStep(Iterator it, reverse_iterator_t::difference_type n,
+                                                        random_access_iterator_tag) {
+        it+=n;
+        return it;
+    }
+
+    template<typename Iterator>
+    Iterator reverse_iterator_t<Iterator>::advanceNStep(Iterator it, reverse_iterator_t::difference_type n,
+                                                        bidirectional_iterator_tag) {
+        if(n>0){
+            for(int i=0;i<n;++i){
+                it=it+1;
+            }
+        }else{
+            for(int i=0;i<-n;++i){
+                it=it-1;
+            }
+        }
+        return it;
     }
 
 

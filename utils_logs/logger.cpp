@@ -21,7 +21,7 @@ namespace SSRSTL{
          */
         size_t q_size = 4096; //queue size must be power of 2
         spdlog::set_async_mode(q_size);
-        spdlog::set_level(spdlog::level::trace);
+        spdlog::set_level(spdlog::level::info);
         spdlog::set_pattern("[%^+++%$] [%H:%M:%S %z] %v");
     }
 
