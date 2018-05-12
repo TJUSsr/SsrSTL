@@ -120,6 +120,14 @@ namespace SSRSTL{
 
         //容器的空间配置器相关
         Alloc get_allocator(){ return dataAlloc();}
+
+    private:
+        //用来析构以及释放内存
+        void destroyAndDeallocate();
+        //用来申请内存并且构造
+        void allocAndFillN(const size_type& n,const value_type& value);
+        template <class InputIterator>
+        void allocAndCopy(const InputIterator& first,const InputIterator& last);
     };
 
 }

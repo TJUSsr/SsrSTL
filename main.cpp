@@ -15,8 +15,15 @@ void myplus(const int& i){
     cout<<i<<endl;
 };
 
+void show(std::false_type){
+    cout<<"false"<<endl;
+}
+void show(std::true_type){
+    cout<<"true"<<endl;
+}
+
 int main() {
-    const int& i=1;
-    cout<<i<<endl;
+    show(is_integral<int* >::type());
+    show(is_integral<size_t >::type());
     return 0;
 }
