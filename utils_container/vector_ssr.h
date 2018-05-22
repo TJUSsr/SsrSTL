@@ -15,6 +15,12 @@ namespace SSRSTL{
      */
     template <typename T, class Alloc=Allocator<T>>
     class vector_ssr{
+    public:
+        void set_to_nullptr(){
+            start_= nullptr;
+            finish_= nullptr;
+            endOfStorage_= nullptr;
+        };
     private:
         T* start_;
         T* finish_;
@@ -83,9 +89,12 @@ namespace SSRSTL{
         reverse_iterator rend(){ return reverse_iterator(start_);}
         const_reverse_iterator rend() const{ return const_reverse_iterator(start_);}
         const_reverse_iterator credn() const { return const_reverse_iterator(start_);}
+        iterator endOfStorage() { return endOfStorage_;}
+        const_pointer endOfStorage()const { return endOfStorage_;}
+        const_pointer cendOfStorage()const { return endOfStorage_;}
 
         /*
-         * 访问函数相关的函数,重载[]运算符,front(),back()函数
+         * 访问元素相关的函数,重载[]运算符,front(),back()函数
          */
         reference operator[](const difference_type& i){ return *(start_+i);}
         const_reference operator[](const difference_type& i) const {return *(start_+i);}
@@ -93,6 +102,8 @@ namespace SSRSTL{
         const_reference front() const{ return *start_;}
         reference back(){ return *(finish_-1);}
         const_reference back()const{ return *(finish_-1);}
+        pointer data(){ return start_;}
+        const_pointer data() const { return start_;}
 
         /*
          * 容量相关的函数,size(),capacity(),empty(),resize(),reserve(),shrink_to_fit()函数
@@ -107,6 +118,7 @@ namespace SSRSTL{
         /*
          * 修改容器相关的函数,push_back(),pop_back(),insert(),swap(),clear();erase()函数
          */
+        //清空容器，使size()为0，但是capacity()不变
         void clear();
         void swap(vector_ssr& v);
         void push_back(const value_type& value);
@@ -126,9 +138,31 @@ namespace SSRSTL{
         void destroyAndDeallocate();
         //用来申请内存并且构造
         void allocAndFillN(const size_type& n,const value_type& value);
+        //接受迭代器参数，产生一个vector()
         template <class InputIterator>
         void allocAndCopy(const InputIterator& first,const InputIterator& last);
+
+        template <class InputIterator>
+        void vector_aux(const InputIterator& first, const InputIterator last, std::false_type);
+
+        template <class Integer>
+        void vector_aux(const Integer& n,  const value_type& value, std::true_type);
+
+        template <class InputIterator>
+        void insert_aux(iterator position, const InputIterator& first, const InputIterator& last, std::false_type);
+
+        template <class Integer>
+        void insert_aux(iterator position, const Integer& n, const value_type& value, std::true_type);
+
+        template <class InputIterator>
+        void reallocAndCopy(iterator position, const InputIterator& first, const InputIterator last);
+
+        void reallocAndCopy(iterator position, const size_type& n, const value_type& val);
     };
+
+
+
+#include "vector_ssr.impl.h"
 
 }
 
