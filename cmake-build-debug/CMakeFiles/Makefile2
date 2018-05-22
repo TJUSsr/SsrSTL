@@ -45,54 +45,54 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/monster/CLion/clion-2018.1.1/bin/cmake/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/monster/CLion/clion-2018.1.1/bin/cmake/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/monster/SsrSTL
+CMAKE_SOURCE_DIR = /Users/monster/SsrProject/SsrSTL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/monster/SsrSTL/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/monster/SsrProject/SsrSTL/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/SsrSTL_Debug_Linux.dir
+# Target rules for target CMakeFiles/SsrSTL_Debug_Darwin.dir
 
 # All Build rule for target.
-CMakeFiles/SsrSTL_Debug_Linux.dir/all:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/depend
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/monster/SsrSTL/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target SsrSTL_Debug_Linux"
-.PHONY : CMakeFiles/SsrSTL_Debug_Linux.dir/all
+CMakeFiles/SsrSTL_Debug_Darwin.dir/all:
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/depend
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/monster/SsrProject/SsrSTL/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target SsrSTL_Debug_Darwin"
+.PHONY : CMakeFiles/SsrSTL_Debug_Darwin.dir/all
 
 # Include target in all.
-all: CMakeFiles/SsrSTL_Debug_Linux.dir/all
+all: CMakeFiles/SsrSTL_Debug_Darwin.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/SsrSTL_Debug_Linux.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/monster/SsrSTL/cmake-build-debug/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/SsrSTL_Debug_Linux.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/monster/SsrSTL/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/SsrSTL_Debug_Linux.dir/rule
+CMakeFiles/SsrSTL_Debug_Darwin.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/monster/SsrProject/SsrSTL/cmake-build-debug/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/SsrSTL_Debug_Darwin.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/monster/SsrProject/SsrSTL/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/SsrSTL_Debug_Darwin.dir/rule
 
 # Convenience name for target.
-SsrSTL_Debug_Linux: CMakeFiles/SsrSTL_Debug_Linux.dir/rule
+SsrSTL_Debug_Darwin: CMakeFiles/SsrSTL_Debug_Darwin.dir/rule
 
-.PHONY : SsrSTL_Debug_Linux
-
-# clean rule for target.
-CMakeFiles/SsrSTL_Debug_Linux.dir/clean:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/clean
-.PHONY : CMakeFiles/SsrSTL_Debug_Linux.dir/clean
+.PHONY : SsrSTL_Debug_Darwin
 
 # clean rule for target.
-clean: CMakeFiles/SsrSTL_Debug_Linux.dir/clean
+CMakeFiles/SsrSTL_Debug_Darwin.dir/clean:
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/clean
+.PHONY : CMakeFiles/SsrSTL_Debug_Darwin.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/SsrSTL_Debug_Darwin.dir/clean
 
 .PHONY : clean
 

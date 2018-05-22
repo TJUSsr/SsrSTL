@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/monster/CLion/clion-2018.1.1/bin/cmake/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/monster/CLion/clion-2018.1.1/bin/cmake/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/monster/SsrSTL
+CMAKE_SOURCE_DIR = /Users/monster/SsrProject/SsrSTL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/monster/SsrSTL/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/monster/SsrProject/SsrSTL/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/monster/SsrSTL/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/monster/CLion/clion-2018.1.1/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CLion.app/Contents/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/monster/CLion/clion-2018.1.1/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/monster/SsrSTL/cmake-build-debug/CMakeFiles /home/monster/SsrSTL/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/monster/SsrProject/SsrSTL/cmake-build-debug/CMakeFiles /Users/monster/SsrProject/SsrSTL/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/monster/SsrSTL/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/monster/SsrProject/SsrSTL/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named SsrSTL_Debug_Linux
+# Target rules for targets named SsrSTL_Debug_Darwin
 
 # Build rule for target.
-SsrSTL_Debug_Linux: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 SsrSTL_Debug_Linux
-.PHONY : SsrSTL_Debug_Linux
+SsrSTL_Debug_Darwin: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SsrSTL_Debug_Darwin
+.PHONY : SsrSTL_Debug_Darwin
 
 # fast build rule for target.
-SsrSTL_Debug_Linux/fast:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/build
-.PHONY : SsrSTL_Debug_Linux/fast
+SsrSTL_Debug_Darwin/fast:
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/build
+.PHONY : SsrSTL_Debug_Darwin/fast
 
 main.o: main.cpp.o
 
@@ -129,7 +129,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -138,7 +138,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -147,7 +147,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 utils_alloc/alloc.o: utils_alloc/alloc.cpp.o
@@ -156,7 +156,7 @@ utils_alloc/alloc.o: utils_alloc/alloc.cpp.o
 
 # target to build an object file
 utils_alloc/alloc.cpp.o:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/utils_alloc/alloc.cpp.o
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/utils_alloc/alloc.cpp.o
 .PHONY : utils_alloc/alloc.cpp.o
 
 utils_alloc/alloc.i: utils_alloc/alloc.cpp.i
@@ -165,7 +165,7 @@ utils_alloc/alloc.i: utils_alloc/alloc.cpp.i
 
 # target to preprocess a source file
 utils_alloc/alloc.cpp.i:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/utils_alloc/alloc.cpp.i
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/utils_alloc/alloc.cpp.i
 .PHONY : utils_alloc/alloc.cpp.i
 
 utils_alloc/alloc.s: utils_alloc/alloc.cpp.s
@@ -174,7 +174,7 @@ utils_alloc/alloc.s: utils_alloc/alloc.cpp.s
 
 # target to generate assembly for a file
 utils_alloc/alloc.cpp.s:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/utils_alloc/alloc.cpp.s
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/utils_alloc/alloc.cpp.s
 .PHONY : utils_alloc/alloc.cpp.s
 
 utils_logs/logger.o: utils_logs/logger.cpp.o
@@ -183,7 +183,7 @@ utils_logs/logger.o: utils_logs/logger.cpp.o
 
 # target to build an object file
 utils_logs/logger.cpp.o:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/utils_logs/logger.cpp.o
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/utils_logs/logger.cpp.o
 .PHONY : utils_logs/logger.cpp.o
 
 utils_logs/logger.i: utils_logs/logger.cpp.i
@@ -192,7 +192,7 @@ utils_logs/logger.i: utils_logs/logger.cpp.i
 
 # target to preprocess a source file
 utils_logs/logger.cpp.i:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/utils_logs/logger.cpp.i
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/utils_logs/logger.cpp.i
 .PHONY : utils_logs/logger.cpp.i
 
 utils_logs/logger.s: utils_logs/logger.cpp.s
@@ -201,7 +201,7 @@ utils_logs/logger.s: utils_logs/logger.cpp.s
 
 # target to generate assembly for a file
 utils_logs/logger.cpp.s:
-	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Linux.dir/build.make CMakeFiles/SsrSTL_Debug_Linux.dir/utils_logs/logger.cpp.s
+	$(MAKE) -f CMakeFiles/SsrSTL_Debug_Darwin.dir/build.make CMakeFiles/SsrSTL_Debug_Darwin.dir/utils_logs/logger.cpp.s
 .PHONY : utils_logs/logger.cpp.s
 
 # Help Target
@@ -212,7 +212,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... SsrSTL_Debug_Linux"
+	@echo "... SsrSTL_Debug_Darwin"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
