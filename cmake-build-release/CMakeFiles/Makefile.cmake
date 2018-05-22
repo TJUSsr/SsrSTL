@@ -129,5 +129,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/SsrSTL_Debug_Darwin.dir/DependInfo.cmake"
+  "CMakeFiles/SsrSTL_Release_Darwin.dir/DependInfo.cmake"
   )
