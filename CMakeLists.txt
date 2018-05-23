@@ -21,14 +21,14 @@ set(SsrSTL main.cpp
         ssrstl_lib/spdlog/spdlog.h
         utils_logs/logger.h
         utils_logs/logger.cpp
-        utils_alloc/alloc.h
-        utils_alloc/alloc.cpp
-        utils_alloc/Allocator.h
-        utils_alloc/Construct.h
+        utils_alloc&module/alloc.h
+        utils_alloc&module/alloc.cpp
+        utils_alloc&module/Allocator.h
+        utils_alloc&module/Construct.h
         utils_typetraits/Typetraits.h
         utils_iterator/Iterator.h
         utils_iterator/ReverseIterator.h
-        utils_container/vector_ssr.h utils_container/vector_ssr.impl.h utils_alloc/uninitializedFunctions.h utils_alloc/Algorithm.h utils_container/pair_ssr.h)
+        utils_container/vector_ssr.h utils_container/vector_ssr.impl.h utils_alloc&module/uninitializedFunctions.h utils_alloc&module/Algorithm.h utils_container/pair_ssr.h utils_alloc&module/Functional.h)
 
 #生成可执行文件
 add_executable(SsrSTL_${CMAKE_BUILD_TYPE}_${CMAKE_CXX_PLATFORM_ID} ${SsrSTL})

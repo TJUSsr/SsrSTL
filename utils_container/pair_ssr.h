@@ -5,7 +5,7 @@
 #ifndef SSRSTL_PAIR_SSR_H
 #define SSRSTL_PAIR_SSR_H
 
-#include "../utils_alloc/Algorithm.h"
+#include "../utils_alloc&module/Algorithm.h"
 
 //设计pair
 namespace SSRSTL{

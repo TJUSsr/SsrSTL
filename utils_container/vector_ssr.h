@@ -5,7 +5,7 @@
 #ifndef SSRSTL_VECTOR_SSR_H
 #define SSRSTL_VECTOR_SSR_H
 
-#include "../utils_alloc/Allocator.h"
+#include "../utils_alloc&module/Allocator.h"
 #include "../utils_iterator/Iterator.h"
 #include "../utils_iterator/ReverseIterator.h"
 
