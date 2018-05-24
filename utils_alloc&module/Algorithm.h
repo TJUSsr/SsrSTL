@@ -133,6 +133,9 @@ namespace SSRSTL{
             }
         }
     };
+    /*
+     * make_heap()函数，时间复杂度O(N)
+     */
     //[first,last)为前闭后开区间，所以这里parent与child之间的计算和up()函数，down()函数不一样
     template <class RandomAccessIterator,class Compare>
     void make_heap(RandomAccessIterator first, RandomAccessIterator last, Compare comp){
@@ -149,6 +152,106 @@ namespace SSRSTL{
     void make_heap(RandomAccessIterator first,RandomAccessIterator last){
         SSRSTL::make_heap(first,last,typename SSRSTL::less<SSRSTL::_iterator_traits<RandomAccessIterator>::value_type>());
     }
+    /*
+     * push_heap()函数，时间复杂度O(logN)
+     */
+    template <class RandomAccessIterator, class Compare>
+    void push_heap(RandomAccessIterator first,RandomAccessIterator last, Compare comp){
+        SSRSTL::up(first,last-1,first,comp);
+    }
+    template <class RandomAccessIterator>
+    void push_heap(RandomAccessIterator first, RandomAccessIterator last){
+        SSRSTL::push_heap(first,last-1,first,typename SSRSTL::less<typename SSRSTL::_iterator_traits<RandomAccessIterator>::value_type >());
+    }
+    /*
+     * pop_heap()函数，时间复杂度O(logN)
+     */
+    template <class RandomAccessIterator, class Compare>
+    void pop_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp){
+        SSRSTL::swap(*first,*(last-1));
+        if(last-first>=2)
+            SSRSTL::down(first,last-2,first,comp);
+    };
+    template <class RandomAccessIterator>
+    void pop_heap(RandomAccessIterator first, RandomAccessIterator last){
+        SSRSTL::pop_heap(first,last,typename SSRSTL::less<typename SSRSTL::_iterator_traits<RandomAccessIterator>::value_type >());
+    }
+    /*
+     * sort_heap()函数，时间复杂度O(N)
+     */
+    template <class RandomAccessIterator, class Compare>
+    void sort_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp){
+        for(auto cur=first;first!=last;++cur){
+            SSRSTL::pop_heap(first,last,comp);
+        }
+    };
+    template <class RandomAccessIterator>
+    void sort_heap(RandomAccessIterator first, RandomAccessIterator last){
+        SSRSTL::sort_heap(first,last,typename SSRSTL::less<typename SSRSTL::_iterator_traits<RandomAccessIterator>::value_type >());
+    }
+    /*
+     * is_heap()函数，时间复杂度O(N)
+     */
+    template <class RandomAccessIterator,class Compare >
+    bool is_heap(RandomAccessIterator first, RandomAccessIterator last, Compare comp){
+        const auto range=last-first;
+        auto index=range/2-1;
+        for(auto cur=first+index;cur>=first;--cur,--index){
+            if(comp(*cur,*(first+index*2+1))||(first+index*2+2<last)&&comp(*cur,*(first+index*2+2))){
+                return false;
+            }
+            if(cur==first)
+                break;
+        }
+        return true;
+    };
+    template <class RandomAccessIterator>
+    bool is_heap(RandomAccessIterator first, RandomAccessIterator last){
+        return SSRSTL::is_heap(first,last,typename SSRSTL::less<typename SSRSTL::_iterator_traits<RandomAccessIterator>::value_type >() );
+    }
+    /*
+     * all_of(),any_of(),none_of()
+     */
+    /*
+     * all_of()函数，需要一个序列，以及一个谓词（即仿函数）
+     * 如果这个仿函数作用在这个序列上都为true，则返回true，否则返回false
+     */
+    template <class InputIterator, class UnaryPredicate>
+    bool all_of(InputIterator frst, InputIterator last, UnaryPredicate pred){
+        for(;frst!=last;++frst){
+            if(!pred(*frst))
+                return false;
+        }
+        return true;
+    };
+    /*
+     * any_of()函数，类似于all_of()函数，
+     * 如果序列终有一个为true，则返回true，否则返回false
+     */
+    template <class InputIterator,class UnaryPredicate>
+    bool any_of(InputIterator first, InputIterator last, UnaryPredicate pred){
+        for(;first!=last;++first){
+            if(pred(*first))
+                return true;
+        }
+        return false;
+    };
+    /*
+     * 类似于all_of(),any_of()函数
+     * 如果序列中所有元素返回false，则返回true，否则返回false
+     */
+    template <class InputIterator, class UnaryPredicate>
+    bool none_of(InputIterator first, InputIterator last, UnaryPredicate pred){
+        for(;first!=last;++first){
+            if(pred(*first))
+                return false;
+        }
+        return true;
+    };
+    /*
+     * for_each(),find(),find_if(),find_if_not(),find_end()
+     * find_first_of(),adjacent_find()
+     */
     
 
 
