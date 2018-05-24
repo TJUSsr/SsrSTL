@@ -9,6 +9,11 @@
 
 //设计pair
 namespace SSRSTL{
+    //声明一下swap()函数
+    template <typename T>
+    void swap(T&a, T&b);
+
+
     template <typename T1, typename T2>
     struct pair_ssr{
     public:
@@ -56,7 +61,7 @@ namespace SSRSTL{
     }
 
     template<typename T1, typename T2>
-    void pair_ssr<T1, T2>::swap(pair_ssr &pr) {
+    void pair_ssr<T1, T2>::swap(pair_ssr<T1,T2> &pr) {
         SSRSTL::swap(first,pr.first);
         SSRSTL::swap(second,pr.second);
     }
@@ -95,7 +100,7 @@ namespace SSRSTL{
      */
     template <class U, class V>
     SSRSTL::pair_ssr<U,V> make_pair(const U& u, const V& v){
-        return pair_ssr(u,v);
+        return pair_ssr<U,V>(u,v);
     };
 
 }
