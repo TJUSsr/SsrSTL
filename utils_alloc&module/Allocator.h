@@ -44,13 +44,13 @@ namespace SSRSTL{
     };
 
     template <typename T>
-    Allocator::pointer Allocator<T>::allocate() {
+    typename Allocator<T>::pointer Allocator<T>::allocate() {
         //调用class alloc中的allocate分配内存
         return static_cast<pointer>(alloc::allocate(sizeof(value_type)));
     }
 
     template <typename T>
-    Allocator::pointer Allocator<T>::allocate(size_type n) {
+    typename Allocator<T>::pointer Allocator<T>::allocate(size_type n) {
         //调用class alloc中的allocate分配内存
         if(n==0) return nullptr;
         return static_cast<pointer >(alloc::allocate(n* sizeof(value_type)));

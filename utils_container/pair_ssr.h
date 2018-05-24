@@ -10,44 +10,44 @@
 //设计pair
 namespace SSRSTL{
     template <typename T1, typename T2>
-    struct pair{
+    struct pair_ssr{
     public:
         typedef T1 first_type;
         typedef T2 second_type;
         T1 first;
         T2 second;
         //构造函数，复制构造函数，赋值运算符,swap()函数
-        pair()= default;
+        pair_ssr()= default;
         template <typename U, typename V>
-        pair(const pair<U,V>& pr);
-        pair(const first_type& f_value, const second_type& s_value);
-        pair& operator=(const pair& pr);
-        void swap(pair& pr);
+        pair_ssr(const pair_ssr<U,V>& pr);
+        pair_ssr(const first_type& f_value, const second_type& s_value);
+        pair_ssr& operator=(const pair_ssr& pr);
+        void swap(pair_ssr& pr);
 
         //友元函数，==,!=,<,>,<=,>=运算符
-        template <typename T1, typename T2>
-        friend bool operator==(const pair<T1,T2>& lhs,const pair<T1,T2>& rhs);
-        template <typename T1, typename T2>
-        friend bool operator!=(const pair<T1,T2>& lhs,const pair<T1,T2>& rhs);
-        template <typename T1, typename T2>
-        friend bool operator>(const pair<T1,T2>& lhs,const pair<T1,T2>& rhs);
-        template <typename T1, typename T2>
-        friend bool operator<(const pair<T1,T2>& lhs,const pair<T1,T2>& rhs);
-        template <typename T1, typename T2>
-        friend bool operator>=(const pair<T1,T2>& lhs,const pair<T1,T2>& rhs);
-        template <typename T1, typename T2>
-        friend bool operator<=(const pair<T1,T2>& lhs,const pair<T1,T2>& rhs);
+        template <typename U, typename V>
+        friend bool operator==(const pair_ssr<U,V>& lhs,const pair_ssr<U,V>& rhs);
+        template <typename U, typename V>
+        friend bool operator!=(const pair_ssr<U,V>& lhs,const pair_ssr<U,V>& rhs);
+        template <typename U, typename V>
+        friend bool operator>(const pair_ssr<U,V>& lhs,const pair_ssr<U,V>& rhs);
+        template <typename U, typename V>
+        friend bool operator<(const pair_ssr<U,V>& lhs,const pair_ssr<U,V>& rhs);
+        template <typename U, typename V>
+        friend bool operator>=(const pair_ssr<U,V>& lhs,const pair_ssr<U,V>& rhs);
+        template <typename U, typename V>
+        friend bool operator<=(const pair_ssr<U,V>& lhs,const pair_ssr<U,V>& rhs);
     };
 
     template<typename T1, typename T2>
     template<typename U, typename V>
-    pair<T1, T2>::pair(const pair<U, V> &pr):first(pr.first),second(pr.second){}
+    pair_ssr<T1, T2>::pair_ssr(const pair_ssr<U, V> &pr):first(pr.first),second(pr.second){}
 
     template<typename T1, typename T2>
-    pair<T1, T2>::pair(const first_type &f_value, const second_type &s_value):first(f_value),second(s_value) {}
+    pair_ssr<T1, T2>::pair_ssr(const first_type &f_value, const second_type &s_value):first(f_value),second(s_value) {}
 
     template<typename T1, typename T2>
-    pair<T1,T2>& pair<T1, T2>::operator=(const pair &pr) {
+    pair_ssr<T1,T2>& pair_ssr<T1, T2>::operator=(const pair_ssr &pr) {
         if(this!=&pr){
             first=pr.first;
             second=pr.second;
@@ -56,41 +56,47 @@ namespace SSRSTL{
     }
 
     template<typename T1, typename T2>
-    void pair<T1, T2>::swap(pair &pr) {
+    void pair_ssr<T1, T2>::swap(pair_ssr &pr) {
         SSRSTL::swap(first,pr.first);
         SSRSTL::swap(second,pr.second);
     }
 
     template<typename T1, typename T2>
-    bool operator==(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
+    bool operator==(const pair_ssr<T1, T2> &lhs, const pair_ssr<T1, T2> &rhs) {
         return (lhs.first==rhs.first)&&(lhs.second==rhs.second);
     }
 
     template<typename T1, typename T2>
-    bool operator!=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
+    bool operator!=(const pair_ssr<T1, T2> &lhs, const pair_ssr<T1, T2> &rhs) {
         return !(lhs==rhs);
     }
 
     template<typename T1, typename T2>
-    bool operator>(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
+    bool operator>(const pair_ssr<T1, T2> &lhs, const pair_ssr<T1, T2> &rhs) {
         return lhs.first>rhs.first||(lhs.first==rhs.first&&lhs.second>rhs.second);
     }
 
     template<typename T1, typename T2>
-    bool operator<(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
+    bool operator<(const pair_ssr<T1, T2> &lhs, const pair_ssr<T1, T2> &rhs) {
         return rhs<lhs;
     }
 
     template<typename T1, typename T2>
-    bool operator>=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
+    bool operator>=(const pair_ssr<T1, T2> &lhs, const pair_ssr<T1, T2> &rhs) {
         return !(lhs<rhs);
     }
 
     template<typename T1, typename T2>
-    bool operator<=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
+    bool operator<=(const pair_ssr<T1, T2> &lhs, const pair_ssr<T1, T2> &rhs) {
         return !(lhs>rhs);
     }
-
+    /*
+     * make_pair()
+     */
+    template <class U, class V>
+    SSRSTL::pair_ssr<U,V> make_pair(const U& u, const V& v){
+        return pair_ssr(u,v);
+    };
 
 }
 

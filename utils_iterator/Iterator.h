@@ -79,12 +79,12 @@ namespace SSRSTL{
 
     //可以依据该模板设计自己需要的迭代器,该模板产生的迭代器可以调用标准库的相关算法
     //Category必须是之前定义的五种型别之一
-    template <typename Category, typename T, typename Distance=ptrdiff_t, typename pointer=T*, typename reference=T& >
+    template <typename Category, typename T, typename Distance=ptrdiff_t, typename point=T*, typename ref=T& >
     struct iterator{
         typedef Category  iterator_category;
         typedef T         value_type;
-        typedef pointer   pointer;
-        typedef reference reference;
+        typedef point     pointer;
+        typedef ref       reference;
         typedef Distance  difference_type;
     };
 

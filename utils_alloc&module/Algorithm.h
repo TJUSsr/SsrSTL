@@ -9,6 +9,7 @@
 #include <utility>
 #include "Allocator.h"
 #include "Functional.h"
+#include "../utils_container/pair_ssr.h"
 #include "../utils_iterator/Iterator.h"
 #include "../utils_typetraits/Typetraits.h"
 
@@ -60,12 +61,12 @@ namespace SSRSTL{
         return first;
     };
     template <class Size>
-    char* fill_n<char*,char>(char* first,Size n, const char&value){
+    char* fill_n(char* first,Size n, const char&value){
         memset(first, static_cast<unsigned char>(value),n);
         return first+n;
     };
     template <class Size>
-    wchar_t* fill_n<wchar_t*,wchar_t>(wchar_t* first,Size n, const wchar_t&value){
+    wchar_t* fill_n(wchar_t* first,Size n, const wchar_t&value){
         memset(first, static_cast<unsigned char>(value),n* sizeof(wchar_t));
         return first+n;
     };
@@ -150,7 +151,7 @@ namespace SSRSTL{
     //没有传入Compare时，会默认采用less<>，此时是一个大顶堆
     template <class RandomAccessIterator>
     void make_heap(RandomAccessIterator first,RandomAccessIterator last){
-        SSRSTL::make_heap(first,last,typename SSRSTL::less<SSRSTL::_iterator_traits<RandomAccessIterator>::value_type>());
+        SSRSTL::make_heap(first,last,typename SSRSTL::less<typename SSRSTL::_iterator_traits<RandomAccessIterator>::value_type>());
     }
     /*
      * push_heap()函数，时间复杂度O(logN)
@@ -252,7 +253,194 @@ namespace SSRSTL{
      * for_each(),find(),find_if(),find_if_not(),find_end()
      * find_first_of(),adjacent_find()
      */
-    
+    //for_each(), Time Complexity: O(N).
+    //*first返回的是引用，所以该函数会改变容器所存放的元素
+    template <class InputIterator, class Function>
+    Function for_each(InputIterator first, InputIterator last, Function fn){
+        for(;first!=last;++first)
+            fn(*first);
+        return fn;
+    };
+    //find(), Time Complexity: O(N).
+    //返回值是迭代器
+    template <class InputIterator, class T>
+    InputIterator find(InputIterator first, InputIterator last, const T& value){
+        for(;first!=last;++first){
+            if(*first==value)
+                break;
+        }
+        return first;
+    };
+    //find_if(), Time Complexity: O(N)
+    template <class InputIterator, class UnaryPredicate>
+    InputIterator find_if(InputIterator first, InputIterator last, UnaryPredicate pred){
+        for(;first!=last;++first){
+            if(pred(*first))
+                break;
+        }
+        return first;
+    };
+    //find_if_not(), Time Complexity: O(N)
+    template <class InputIterator, class UnaryPredicate>
+    InputIterator find_if_not(InputIterator first, InputIterator last, UnaryPredicate pred){
+        for(;first!=last;++first){
+            if(!pred(*first))
+                break;
+        }
+        return first;
+    };
+    //find_end(), Time Complexity: O(N^2)
+    //在一个序列中搜索出最后一个与另一个序列匹配的字序列
+    template <class ForwardIterator1, class ForwardIterator2>
+    ForwardIterator1 find_end(ForwardIterator1 first1, ForwardIterator1 last1,
+                ForwardIterator2 first2, ForwardIterator2 last2){
+        if(first2==last2)
+            return last1;
+        auto ret=last1;
+        while(first1!=last1){
+            ForwardIterator1 it1=first1;
+            ForwardIterator2 it2=first2;
+            while(*it1==*it2){
+                ++it1;
+                ++it2;
+                if(it2==last2){
+                    ret=first1;
+                    break;
+                }
+                if(it1==last1)
+                    return ret;
+            }
+            ++first1;
+        }
+        return ret;
+    };
+    template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
+    ForwardIterator1 find_end(ForwardIterator1 first1, ForwardIterator1 last1,
+    ForwardIterator2 first2, ForwardIterator2 last2,
+    BinaryPredicate pred){
+        if(first2==last2)
+            return last1;
+        auto ret=last1;
+        while(first1!=last1){
+            ForwardIterator1 it1=first1;
+            ForwardIterator2 it2=first2;
+            while(pred(*it1,*it2)){
+                ++it1;++it2;
+                if(it2==last2){ret=first1;break;}
+                if(it1==last1)
+                    return ret;
+            }
+            ++first1;
+        }
+        return ret;
+    };
+    //find_first_of(), Time Complexity: O(N^2).
+    //类似于find_end()
+    template <class ForwardIterator1, class ForwardIterator2>
+    ForwardIterator1 find_first_of(ForwardIterator1 first1, ForwardIterator1 last1,
+    ForwardIterator2 first2, ForwardIterator2 last2){
+        if(first2==last2)
+            return last1;
+        auto ret=last1;
+        while(first1!=last1){
+            auto it1=first1;
+            auto it2=first2;
+            while(*it1==*it2){
+                ++it1;++it2;
+                if(it2==last2||it1==last1)
+                    return first1;
+            }
+            ++first1;
+        }
+        return ret;
+    };
+    template <class ForwardIterator1, class ForwardIterator2, class BinayPredicate>
+    ForwardIterator1 find_first_of(ForwardIterator1 first1, ForwardIterator1 last1,
+    ForwardIterator2 first2, ForwardIterator2 last2,
+    BinayPredicate pred){
+        if(first2==last2)
+            return last1;
+        auto ret=last1;
+        while (first1!=last1){
+            auto it1=first1;
+            auto it2=first2;
+            while (pred(*it1,*it2)){
+                ++it1;++it2;
+                if(it2==last2||it1==last1)
+                    return first1;
+            }
+            ++first1;
+        }
+        return ret;
+    };
+    /*
+     * adjacent_find(), Time Complexity: O(N)
+     */
+    template <class ForwardIterator, class BinaryPredicate>
+    ForwardIterator adjacent_find(ForwardIterator first, ForwardIterator last, BinaryPredicate pred){
+        for(;first!=last;++first){
+            if(first+1!=last&&pred(*first,*(first+1)))
+                break;
+        }
+        return first;
+    }
+    template <class ForwardIterator>
+    ForwardIterator adjacent_find(ForwardIterator first, ForwardIterator last){
+        return adjacent_find(first, last, typename SSRSTL::equal_to<typename SSRSTL::_iterator_traits<ForwardIterator>::value_type >() );
+    }
+    /*
+     * count(),count_if()
+     * Time Complexity: O(N)
+     */
+    template <class InputIterator, class T>
+    typename SSRSTL::_iterator_traits<InputIterator>::difference_type count(
+            InputIterator first, InputIterator last, const T& value
+            ){
+        typename SSRSTL::_iterator_traits<InputIterator>::difference_type n=0;
+        for(;first!=last;++first){
+            if(*first==value)
+                ++n;
+        }
+        return n;
+    };
+    template <class InputIterator, class UnaryPredicate>
+    typename SSRSTL::_iterator_traits<InputIterator>::difference_type count_if(
+            InputIterator first, InputIterator last, UnaryPredicate pred
+            ){
+        typename SSRSTL::_iterator_traits<InputIterator>::difference_type n=0;
+        for(;first!=last;++first){
+            if(pred(*first))
+                ++n;
+        }
+        return n;
+    };
+    /*
+     * mismatch(), Time Complexity: O(N)
+     */
+    template <class InputIterator1, class InputIterator2>
+    typename SSRSTL::pair_ssr<InputIterator1,InputIterator2> mismatch(
+            InputIterator1 first1,InputIterator1 last1,InputIterator2 first2
+            ){
+        for(;first1!=last1;++first1,++first2){
+            if(*first1!=*first2)
+                break;
+        }
+        return SSRSTL::make_pair(first1,first2);
+    };
+    template <class InputIterator1, class InputIterator2, class BinaryPredicate>
+    typename SSRSTL::pair_ssr<InputIterator1,InputIterator2> mismatch(
+            InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, BinaryPredicate pred
+            ){
+        for(;first1!=last1;++first1,++first2){
+            if(!pred(*first1,*first2))
+                break;
+        }
+        return SSRSTL::make_pair(first1,first2);
+    };
+    /*
+     * equal(), Time Complexity: O(N)
+     */
+
 
 
 }
