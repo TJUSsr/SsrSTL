@@ -20,10 +20,10 @@ namespace SSRSTL{
         }
     };
     //等于仿函数
-    template <class T>
+    template <class U, class V>
     struct equal_to{
-        typedef T           first_argument_type;
-        typedef T           second_argument_type;
+        typedef U           first_argument_type;
+        typedef V           second_argument_type;
         typedef bool        result_type;
         result_type operator()(const first_argument_type& f_value, const second_argument_type& s_value){
             return f_value==s_value;

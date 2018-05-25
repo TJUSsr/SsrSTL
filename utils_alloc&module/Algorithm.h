@@ -291,29 +291,6 @@ namespace SSRSTL{
     };
     //find_end(), Time Complexity: O(N^2)
     //在一个序列中搜索出最后一个与另一个序列匹配的字序列
-    template <class ForwardIterator1, class ForwardIterator2>
-    ForwardIterator1 find_end(ForwardIterator1 first1, ForwardIterator1 last1,
-                ForwardIterator2 first2, ForwardIterator2 last2){
-        if(first2==last2)
-            return last1;
-        auto ret=last1;
-        while(first1!=last1){
-            ForwardIterator1 it1=first1;
-            ForwardIterator2 it2=first2;
-            while(*it1==*it2){
-                ++it1;
-                ++it2;
-                if(it2==last2){
-                    ret=first1;
-                    break;
-                }
-                if(it1==last1)
-                    return ret;
-            }
-            ++first1;
-        }
-        return ret;
-    };
     template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
     ForwardIterator1 find_end(ForwardIterator1 first1, ForwardIterator1 last1,
     ForwardIterator2 first2, ForwardIterator2 last2,
@@ -334,26 +311,15 @@ namespace SSRSTL{
         }
         return ret;
     };
+    template <class ForwardIterator1, class ForwardIterator2>
+    ForwardIterator1 find_end(ForwardIterator1 first1, ForwardIterator1 last1,
+                              ForwardIterator2 first2, ForwardIterator2 last2){
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator1>::value_type value_type1;
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator2>::value_type value_type2;
+        return find_end(first1,last1,first2,last2, SSRSTL::equal_to<value_type1 ,value_type2 >());
+    };
     //find_first_of(), Time Complexity: O(N^2).
     //类似于find_end()
-    template <class ForwardIterator1, class ForwardIterator2>
-    ForwardIterator1 find_first_of(ForwardIterator1 first1, ForwardIterator1 last1,
-    ForwardIterator2 first2, ForwardIterator2 last2){
-        if(first2==last2)
-            return last1;
-        auto ret=last1;
-        while(first1!=last1){
-            auto it1=first1;
-            auto it2=first2;
-            while(*it1==*it2){
-                ++it1;++it2;
-                if(it2==last2||it1==last1)
-                    return first1;
-            }
-            ++first1;
-        }
-        return ret;
-    };
     template <class ForwardIterator1, class ForwardIterator2, class BinayPredicate>
     ForwardIterator1 find_first_of(ForwardIterator1 first1, ForwardIterator1 last1,
     ForwardIterator2 first2, ForwardIterator2 last2,
@@ -373,6 +339,13 @@ namespace SSRSTL{
         }
         return ret;
     };
+    template <class ForwardIterator1, class ForwardIterator2>
+    ForwardIterator1 find_first_of(ForwardIterator1 first1, ForwardIterator1 last1,
+                                   ForwardIterator2 first2, ForwardIterator2 last2){
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator1>::value_type value_type1;
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator2>::value_type value_type2;
+        return find_first_of(first1,last1,first2,last2,SSRSTL::equal_to<value_type1,value_type2 >());
+    };
     /*
      * adjacent_find(), Time Complexity: O(N)
      */
@@ -386,7 +359,8 @@ namespace SSRSTL{
     }
     template <class ForwardIterator>
     ForwardIterator adjacent_find(ForwardIterator first, ForwardIterator last){
-        return adjacent_find(first, last, typename SSRSTL::equal_to<typename SSRSTL::_iterator_traits<ForwardIterator>::value_type >() );
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator>::value_type value_type;
+        return adjacent_find(first, last, SSRSTL::equal_to<value_type ,value_type >() );
     }
     /*
      * count(),count_if()
@@ -417,16 +391,6 @@ namespace SSRSTL{
     /*
      * mismatch(), Time Complexity: O(N)
      */
-    template <class InputIterator1, class InputIterator2>
-    typename SSRSTL::pair_ssr<InputIterator1,InputIterator2> mismatch(
-            InputIterator1 first1,InputIterator1 last1,InputIterator2 first2
-            ){
-        for(;first1!=last1;++first1,++first2){
-            if(*first1!=*first2)
-                break;
-        }
-        return SSRSTL::make_pair(first1,first2);
-    };
     template <class InputIterator1, class InputIterator2, class BinaryPredicate>
     typename SSRSTL::pair_ssr<InputIterator1,InputIterator2> mismatch(
             InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, BinaryPredicate pred
@@ -437,9 +401,177 @@ namespace SSRSTL{
         }
         return SSRSTL::make_pair(first1,first2);
     };
+    template <class InputIterator1, class InputIterator2>
+    typename SSRSTL::pair_ssr<InputIterator1,InputIterator2> mismatch(
+            InputIterator1 first1,InputIterator1 last1,InputIterator2 first2
+    ){
+        typedef typename SSRSTL::_iterator_traits<InputIterator1>::value_type value_type1;
+        typedef typename SSRSTL::_iterator_traits<InputIterator2>::value_type value_type2;
+        return mismatch(first1,last1,first2, SSRSTL::equal_to<value_type1 ,value_type2 >() );
+    };
     /*
      * equal(), Time Complexity: O(N)
      */
+    template <class InputIterator1, class InputIterator2, class BinaryPredicate>
+    bool equal(InputIterator1 first1, InputIterator1 last1,
+               InputIterator2 first2, InputIterator2 last2,
+    BinaryPredicate pred){
+        for(;first1!=last1;++first1,++first2){
+            if(!pred(*first1,*first2))
+                return false;
+        }
+        return true;
+    };
+    template <class InputIterator1, class InputIterator2>
+    bool equal(InputIterator1 first1, InputIterator1 last1,
+               InputIterator2 first2, InputIterator2 last2){
+        typedef typename SSRSTL::_iterator_traits<InputIterator1>::value_type value_type1;
+        typedef typename SSRSTL::_iterator_traits<InputIterator2>::value_type value_type2;
+        return equal(first1,last1,first2,last2, SSRSTL::equal_to<value_type1 ,value_type2 >());
+    };
+    /*
+     * distsance(),Time Complexity: O(N)
+     */
+    template <class InputIterator>
+    typename SSRSTL::_iterator_traits<InputIterator>::difference_type _distance(
+            InputIterator first, InputIterator last, SSRSTL::input_iterator_tag
+            ){
+        typename SSRSTL::_iterator_traits<InputIterator>::difference_type distance=0;
+        while(first++!=last)
+            ++distance;
+        return distance;
+    }
+    template <class RandomIterator>
+    typename SSRSTL::_iterator_traits<RandomIterator>::difference_type _distance(
+            RandomIterator first, RandomIterator last, SSRSTL::random_access_iterator_tag
+            ){
+        return last-first;
+    }
+    template <class Iterator>
+    typename SSRSTL::_iterator_traits<Iterator>::difference_type distance(
+            Iterator first, Iterator last
+            ){
+        typedef typename SSRSTL::_iterator_traits<Iterator>::iterator_category iterator_category;
+        return _distance(first,last,iterator_category());
+    };
+    /*
+     * advance(), Time Complexity: O(N)
+     */
+    namespace {
+        template <class Iterator, class Distance>
+        void _advance(Iterator& it, Distance n, SSRSTL::input_iterator_tag){
+            assert(n>=0);
+            while(n--){
+                ++it;
+            }
+        };
+        template <class Iterator, class Distance>
+        void _advance(Iterator& it, Distance n, SSRSTL::bidirectional_iterator_tag){
+            if(n<0){
+                while(n++)
+                    --it;
+            }else{
+                while(n--)
+                    ++it;
+            }
+        };
+        template <class Iterator, class Distance>
+        void _advance(Iterator& it, Distance n, SSRSTL::random_access_iterator_tag){
+            if(n<0){
+                it-=(-n);
+            } else{
+                it+=n;
+            }
+        };
+    }
+    template <class InputIterator, class Distance>
+    void advance(InputIterator&it, Distance n){
+        typedef typename SSRSTL::_iterator_traits<InputIterator>::iterator_category iterator_category;
+        return SSRSTL::_advance(it,n,iterator_category());
+    };
+    /*
+     * search(), Time Complexity: O(N^2)
+     * 在第一个序列中查找第二个序列，返回第一个序列的迭代器
+     */
+    template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
+    ForwardIterator1 search(ForwardIterator1 first1, ForwardIterator1 last1,
+                ForwardIterator2 first2, ForwardIterator2 last2,
+                BinaryPredicate pred){
+        while(first1!=last1){
+            auto it1=first1;
+            auto it2=first2;
+            while(it1!=last1&&it2!=last2){
+                if(pred(*it1,*it2)){
+                    ++it1;++it2;
+                }else{
+                    break;
+                }
+            }
+            if(it2==last2)
+                return first1;
+            if(it1==last1)
+                return last1;
+            ++first1;
+        }
+        return last1;
+    };
+    template <class ForwardIterator1, class ForwardIterator2>
+    ForwardIterator1 search(ForwardIterator1 first1, ForwardIterator1 last1,
+            ForwardIterator2 first2, ForwardIterator2 last2){
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator1>::value_type value_type1;
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator2>::value_type value_type2;
+        return search(first1,last1,first2,last2,SSRSTL::equal_to<value_type1 ,value_type2 >());
+    };
+
+    /*
+     * is_permutation(), Time Complexity: O(N^N)
+     * 判断两个序列是否为同一元素的不同排列
+     */
+    template <class ForwardIterator1, class ForwardIterator2, class BinaryPredicate>
+    bool is_permutation(ForwardIterator1 first1, ForwardIterator1 last1,
+            ForwardIterator2 first2, BinaryPredicate pred){
+        auto res=SSRSTL::mismatch(first1,last1,first2,pred);
+        first1=res.first;first2=res.second;
+        if(first1==last1)
+            return true;
+        auto last2=first2;
+        SSRSTL::advance(last2,SSRSTL::distance(first1,last1));
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator1>::value_type value_type;
+        for(auto it1=first1; it1!=last1;++it1){
+            if(SSRSTL::find_if(first1,it1,[&](value_type val){ return pred(val,*it1);})==it1){
+                auto n=SSRSTL::count(first2,last2,*it1);
+                if(n==0||SSRSTL::count(it1,last1,*it1)!=n)
+                    return false;
+            }
+        }
+        return true;
+    };
+    template <class ForwardIterator1, class ForwardIterator2>
+    bool is_permutation(ForwardIterator1 first1, ForwardIterator1 last1,
+            ForwardIterator2 first2){
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator1>::value_type value_type1;
+        typedef typename SSRSTL::_iterator_traits<ForwardIterator2>::value_type value_type2;
+        return SSRSTL::is_permutation(first1,last1,first2,SSRSTL::equal_to<value_type1 ,value_type2 >());
+    };
+    /*
+     * generate(),generate_n()
+     * Time Complexity: O(N)
+     */
+    template <class InputIterator, class Function>
+    void generate(InputIterator first,InputIterator last,Function func){
+        for(;first!=last;++first){
+            *first=func;
+        }
+    };
+    /*
+     * sort(),Time Complexity: O(NlogN)
+     * 快排+插入排序+mid3
+     * 通用的sort()要求容器具有随机存取迭代器
+     */
+    namespace {
+
+    }
+
 
 
 

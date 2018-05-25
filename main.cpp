@@ -25,12 +25,13 @@ void show(std::true_type){
 
 int main() {
     init();
-    vector<int> vec1={1};
-    vector<int> vec2={1,2};
+    vector<int> vec1={1,2,3,4,5,6};
+    vector<int> vec2={6,3,4,1,2,5};
+    sort(vec2,begin(),vec2.end());
     show(is_integral<int* >::type());
     show(is_integral<size_t >::type());
-    auto ret= SSRSTL::find_first_of(vec1.begin(),vec1.end(),vec2.begin(),vec2.end());
-    if(ret==vec1.begin()){
+    auto ret= SSRSTL::is_permutation(vec1.begin(),vec1.end(),vec2.begin());
+    if(ret==true){
         SPDLOG_TRACE(console,"true");
         cout<<"true"<<endl;
     }
