@@ -569,8 +569,66 @@ namespace SSRSTL{
      * 通用的sort()要求容器具有随机存取迭代器
      */
     namespace {
+        //这里的first，last前闭后开
+        template <class RandomIterator, class BinaryPredicate>
+        typename SSRSTL::_iterator_traits<RandomIterator>::value_type mid3(
+                RandomIterator first, RandomIterator last,
+                BinaryPredicate pred
+                ){
+            auto mid=first+((last-first)>>2);
+            if(pred(*mid,*first))
+                SSRSTL::swap(*mid,*first);
+            if(pred(*(last-1),*mid))
+                SSRSTL::swap(*(last-1),*mid);
+            if(pred(*mid,*first))
+                SSRSTL::swap(*mid,*first);
+            auto ret=*mid;
+            swap(*mid,*(last-1));
+            return ret;
+        };
 
+        //插入排序,first,last前闭后开
+        template <class RandomIterator,class BinaryPredicate>
+        void SsrInsertSort(RandomIterator first, RandomIterator last, BinaryPredicate pred){
+            RandomIterator j;
+            typename SSRSTL::_iterator_traits<RandomIterator>::value_type temp;
+            for(auto it=first+1;it<last;++it){
+                temp=*it;
+                for(j=it;j>=first&&pred(*it,*j);--j){
+                    *(j+1)=*j;
+                }
+                *j=temp;
+            }
+        };
     }
+    //结合了三点取值以及快排的sort, first,last前闭后开
+    template <class RandomIterator, class BinaryPredicate>
+    void sort(RandomIterator first,RandomIterator last,
+            BinaryPredicate pred){
+        if(first>=last)
+            return;
+        if(last-first<=20)
+            SSRSTL::SsrInsertSort(first,last,pred);
+        auto mid=SSRSTL::mid3(first,last,pred);
+        auto p1=first,p2=last-2;
+        while(p1<p2){
+            while(pred(*p1,mid)&&p1<p2)++p1;
+            while(pred(mid,*p2)&&p1<p2)--p2;
+            if(p1<p2)
+                SSRSTL::swap(*p1,*p2);
+        }
+        SSRSTL::swap(*p1,*(last-2));//把最后一个元素放到它应该在的位置
+        SSRSTL::sort(first,p1,pred);//递归
+        SSRSTL::sort(p1+1,last,pred);
+    };
+    template <class RandomIterator>
+    void sort(RandomIterator first,RandomIterator last){
+        typedef typename SSRSTL::_iterator_traits<RandomIterator>::value_type value_type;
+        SSRSTL::sort(first,last,SSRSTL::less<value_type >());
+    }
+    /*
+     * copy()函数
+     */
 
 
 
