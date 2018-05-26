@@ -629,10 +629,44 @@ namespace SSRSTL{
     /*
      * copy()函数
      */
-
-
-
-
+    template<class InputIterator, class OutputIterator>
+    OutputIterator __copy(InputIterator first, InputIterator last, OutputIterator result, SSRSTL::_true_type){
+        auto dis=SSRSTL::distance(first,last);
+        memcpy(result,first,dis*sizeof(*first));
+        advance(result,dis);
+        return result;
+    };
+    template <class InputIterator,class OutputIterator>
+    OutputIterator __copy(InputIterator first,InputIterator last,OutputIterator result, SSRSTL::_false_type){
+        while(first!=last){
+            *result=*first;
+            ++result;
+            ++first;
+        }
+        return result;
+    };
+    template <class InputIterator, class OutputIterator, class T>
+    OutputIterator __copy(InputIterator first, InputIterator last, OutputIterator result, T*){
+        typedef typename SSRSTL::_type_traits<T>::is_POD_type is_POD;
+        return __copy(first,last,result,is_POD());
+    };
+    template <class InputIterator, class OutputIterator>
+    OutputIterator __copy(InputIterator first, InputIterator last, OutputIterator result){
+        return __copy(first,last,result,SSRSTL::value_Type(first));
+    };
+    template <>
+    inline char* copy(char *first, char* last, char*result){
+        auto dist=last-first;
+        memcpy(result,first,dist* sizeof(*first));
+        return result+dist;
+    }
+    template <>
+    inline wchar_t* copy(wchar_t* first, wchar_t* last, wchar_t* result){
+        auto dist=last-first;
+        memcpy(result,first,dist*sizeof(*first));
+        return result+dist;
+    }
+    
 }
 
 #endif //SSRSTL_ALGORITHM_H
