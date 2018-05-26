@@ -6,6 +6,7 @@
 #define SSRSTL_VECTOR_SSR_IMPL_H
 
 #include "vector_ssr.h"
+#include "../utils_alloc&module/uninitializedFunctions.h"
 
 namespace SSRSTL{
     //************构造函数，复制构造函数，移动语意复制构造函数，复制运算符，移动语意复制运算符，析构函数*******
@@ -74,12 +75,31 @@ namespace SSRSTL{
             dataAlloc::destroy(start_+n,finish_);
         }else if(n>size()&&n<=capacity()){
             auto lengthOfInsert=n-size();
-            //TODO
+            finish_=SSRSTL::uninitialized_fill_n(finish_,lengthOfInsert,value);
         }else{
-
+            auto lengthOfInsert=n-size();
+            iterator newstart=dataAlloc::allocate(getNewCapacity(lengthOfInsert));
+            iterator newfinish=SSRSTL::uninitialized_copy(begin(),end(),newstart);
+            newfinish=SSRSTL::uninitialized_fill_n(newfinish,lengthOfInsert,value);
+            destroyAndDeallocate();
+            start_=newstart;
+            finish_=newfinish;
+            endOfStorage_=start_+n;
         }
-        return;
     }
+    //reserve()函数，只会改变capacity，且需求的capacity比现有小时，不做任何操作
+    template<typename T, class Alloc>
+    void vector_ssr<T,Alloc>::reserve(size_type n) {
+        if(n<=capacity())
+            return;
+        iterator newstart=dataAlloc::allocate(getNewCapacity(n));
+        iterator newfinish=SSRSTL::uninitialized_copy(begin(),end(),newstart);
+        destroyAndDeallocate();
+        start_=newstart;
+        finish_=newfinish;
+        endOfStorage_=start_+n;
+    }
+
 };
 
 #endif //SSRSTL_VECTOR_SSR_IMPL_H

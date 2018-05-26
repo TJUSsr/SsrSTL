@@ -134,30 +134,83 @@ namespace SSRSTL{
         Alloc get_allocator(){ return dataAlloc();}
 
     private:
+        //用来获得新的内存,保证扩容内存至少为现在内存的两倍
+        size_type getNewCapacity(size_type len) const{
+            size_type oldCapacity=endOfStorage_-start_;
+            auto res=SSRSTL::max(oldCapacity,len);
+            size_type newCapacity=(oldCapacity!=0?(oldCapacity+res):len);
+            return newCapacity;
+        };
         //用来析构以及释放内存
-        void destroyAndDeallocate();
+        void destroyAndDeallocate(){
+            if(capacity()!=0){
+                dataAlloc::destroy(start_,finish_);
+                dataAlloc::deallocate(start_,endOfStorage_);
+            }
+        };
         //用来申请内存并且构造
-        void allocAndFillN(const size_type& n,const value_type& value);
+        void allocAndFillN(const size_type& n,const value_type& value){
+            start_=dataAlloc::allocate(n);
+            SSRSTL::uninitialized_fill_n(start_,n,value);
+            finish_=endOfStorage_=start_+n;
+        };
         //接受迭代器参数，产生一个vector()
         template <class InputIterator>
-        void allocAndCopy(const InputIterator& first,const InputIterator& last);
+        void allocAndCopy(const InputIterator& first,const InputIterator& last){
+            auto n=SSRSTL::distance(first,last);
+            start_=dataAlloc::allocate(n);
+            finish_=SSRSTL::uninitialized_copy(first,last,start_);
+            endOfStorage_=finish_;
+        };
 
         template <class InputIterator>
-        void vector_aux(const InputIterator& first, const InputIterator last, std::false_type);
+        void reallocAndCopy(iterator position, const InputIterator& first, const InputIterator last){
+            auto n=SSRSTL::distance(first,last);
+            size_type newCapacity=getNewCapacity(n);
+            iterator newstart=dataAlloc::allocate(n);
+            iterator newend=newstart+newCapacity;
+            iterator newfinish=SSRSTL::uninitialized_copy(begin(),position,newstart);
+            newfinish=SSRSTL::uninitialized_copy(first,last,newfinish);
+            newfinish=SSRSTL::uninitialized_copy(position,end(),newfinish);
+            destroyAndDeallocate();
+            start_=newstart;
+            finish_=newfinish;
+            endOfStorage_=newend;
+        };
+
+        void reallocAndFillN(iterator position, const size_type& n, const value_type& val){
+            size_type newCapacity=getNewCapacity(n);
+            iterator newstart=dataAlloc::allocate(newCapacity);
+            iterator newendOfStorage=newstart+newCapacity;
+            //先拷贝插入点前的部分，再fill_n,之后再拷贝插入点之后的部分
+            auto newfinish=SSRSTL::uninitialized_copy(begin(),position,newstart);
+            newfinish=SSRSTL::uninitialized_fill_n(newfinish,n,val);
+            newfinish=SSRSTL::uninitialized_copy(position,end(),newfinish);
+            destroyAndDeallocate();
+            start_=newstart;
+            finish_=newfinish;
+            endOfStorage_=newendOfStorage;
+        };
+        template <class InputIterator>
+        void vector_aux(const InputIterator& first, const InputIterator& last, std::false_type ){
+            allocAndCopy(first,last);
+        };
 
         template <class Integer>
-        void vector_aux(const Integer& n,  const value_type& value, std::true_type);
+        void vector_aux(const Integer& n,  const value_type& value, std::true_type ){
+            allocAndFillN(n,value);
+        };
 
         template <class InputIterator>
-        void insert_aux(iterator position, const InputIterator& first, const InputIterator& last, std::false_type);
+        void insert_aux(iterator position, const InputIterator& first, const InputIterator& last, std::false_type){
+            reallocAndCopy(position,first,last);
+        };
 
         template <class Integer>
-        void insert_aux(iterator position, const Integer& n, const value_type& value, std::true_type);
+        void insert_aux(iterator position, const Integer& n, const value_type& value, std::true_type){
+            reallocAndFillN(position,n,value);
+        };
 
-        template <class InputIterator>
-        void reallocAndCopy(iterator position, const InputIterator& first, const InputIterator last);
-
-        void reallocAndCopy(iterator position, const size_type& n, const value_type& val);
     };
 
 

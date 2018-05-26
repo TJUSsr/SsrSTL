@@ -25,19 +25,11 @@ void show(std::true_type){
 
 int main() {
     init();
+    std::true_type;
+    is_integral<int>::value_type();
     vector<int> vec1={1,2,3,4,5,6};
-    vector<int> vec2={6,3,4,1,2,5};
-    sort(vec2,begin(),vec2.end());
-    show(is_integral<int* >::type());
-    show(is_integral<size_t >::type());
-    auto ret= SSRSTL::is_permutation(vec1.begin(),vec1.end(),vec2.begin());
-    if(ret==true){
-        SPDLOG_TRACE(console,"true");
-        cout<<"true"<<endl;
-    }
-    else {
-        SPDLOG_TRACE(console, "false");
-        cout<<"false"<<endl;
-    }
+    cout<<vec1.capacity()<<endl;
+    vec1.resize(vec1.capacity()+7);
+    cout<<vec1.capacity()<<endl;
     return 0;
 }

@@ -651,7 +651,7 @@ namespace SSRSTL{
         return __copy(first,last,result,is_POD());
     };
     template <class InputIterator, class OutputIterator>
-    OutputIterator __copy(InputIterator first, InputIterator last, OutputIterator result){
+    OutputIterator copy(InputIterator first, InputIterator last, OutputIterator result){
         return __copy(first,last,result,SSRSTL::value_Type(first));
     };
     template <>
@@ -666,7 +666,7 @@ namespace SSRSTL{
         memcpy(result,first,dist*sizeof(*first));
         return result+dist;
     }
-    
+
 }
 
 #endif //SSRSTL_ALGORITHM_H
