@@ -11,22 +11,27 @@
 #include "Construct.h"
 #include "../utils_iterator/Iterator.h"
 #include "../utils_typetraits/Typetraits.h"
+#include "../utils_logs/logger.h"
 
 namespace SSRSTL{
 
     //***未初始化copy()函数，如果是POD类型的数据，直接memcpy，否则挨个复制
     template <class InputIterator, class ForwardIterator>
     ForwardIterator _uninitialized_copy_aux(InputIterator first, InputIterator last, ForwardIterator result, _true_type){
-        memcpy(result,first,(last-first)* sizeof(*first));
+        SPDLOG_TRACE(console,"in {}()", __FUNCTION__);
+        std::memcpy(&*result,&*first,(last-first)* sizeof(*first));
+        SPDLOG_TRACE(console,"out {}()", __FUNCTION__);
         return result+(last-first);
     };
 
     template <class InputIterator, class ForwardIterator>
     ForwardIterator _uninitialized_copy_aux(InputIterator first, InputIterator last, ForwardIterator result, _false_type){
+        SPDLOG_TRACE(console,"in {}()", __FUNCTION__);
         int i=0;
         for(;first!=last;++first,++i){
             construct((result+i),*first);
         }
+        SPDLOG_TRACE(console,"out {}()", __FUNCTION__);
         return result+i;
     };
     template <class InputIterator, class ForwardIterator>

@@ -12,6 +12,7 @@
 #include "../utils_alloc&module/Allocator.h"
 #include "../utils_iterator/Iterator.h"
 #include "../utils_iterator/ReverseIterator.h"
+#include "../utils_logs/logger.h"
 
 namespace SSRSTL{
     /*
@@ -45,7 +46,7 @@ namespace SSRSTL{
         vector_ssr(const std::initializer_list<T>& list);
 
         template <class InputIterator>
-        vector_ssr(const InputIterator& first,const InputIterator& last);
+        vector_ssr( InputIterator first, InputIterator last);
         //复制构造函数
         vector_ssr(const vector_ssr& v);
         //移动语义构造函数,不会抛出异常
@@ -157,8 +158,8 @@ namespace SSRSTL{
         };
         //接受迭代器参数，产生一个vector()
         template <class InputIterator>
-        void allocAndCopy(const InputIterator& first,const InputIterator& last){
-            auto n=SSRSTL::distance(first,last);
+        void allocAndCopy(InputIterator first,InputIterator last){
+            auto n=std::distance(first,last);
             start_=dataAlloc::allocate(n);
             finish_=SSRSTL::uninitialized_copy(first,last,start_);
             endOfStorage_=finish_;
@@ -193,22 +194,26 @@ namespace SSRSTL{
             endOfStorage_=newendOfStorage;
         };
         template <class InputIterator>
-        void vector_aux(const InputIterator& first, const InputIterator& last, std::false_type){
+        void vector_aux( InputIterator first,  InputIterator last, std::false_type){
+            SPDLOG_TRACE(console,"in {}()", __FUNCTION__);
             allocAndCopy(first,last);
+            SPDLOG_TRACE(console,"out {}()", __FUNCTION__);
         };
 
         template <class Integer>
-        void vector_aux(const Integer& n,  const value_type& value, std::true_type){
+        void vector_aux( Integer n, const value_type& value, std::true_type){
+            SPDLOG_TRACE(console,"in {}()", __FUNCTION__);
             allocAndFillN(n,value);
+            SPDLOG_TRACE(console,"out {}()", __FUNCTION__);
         };
 
         template <class InputIterator>
-        void insert_aux(iterator position, const InputIterator& first, const InputIterator& last, std::false_type){
+        void insert_aux(iterator position, InputIterator first, InputIterator last, std::false_type){
             reallocAndCopy(position,first,last);
         };
 
         template <class Integer>
-        void insert_aux(iterator position, const Integer& n, const value_type& value, std::true_type){
+        void insert_aux(iterator position, Integer n, const value_type& value, std::true_type){
             reallocAndFillN(position,n,value);
         };
 
