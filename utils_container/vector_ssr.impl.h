@@ -22,11 +22,10 @@ namespace SSRSTL{
     template<class InputIterator>
     vector_ssr<T,Alloc>::vector_ssr( InputIterator first, InputIterator last) {
         vector_aux(first,last,typename std::is_integral<InputIterator>::type());
-        Test::log_container(*this,"vector_ssr");
     }
     template<typename T, class Alloc>
     vector_ssr<T,Alloc>::vector_ssr(const std::initializer_list<T>& list) {
-        allocAndCopy(list.begin(),list.end());
+        vector_aux(list.begin(),list.end(),std::false_type());
     }
 
     //复制构造函数
