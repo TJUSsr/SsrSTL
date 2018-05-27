@@ -28,10 +28,11 @@ void show(std::true_type){
 
 int main() {
     init();
+    initializer_list<int> temp={1,2,3,4};
     vector<int> vec1={1,2,3,4,5};
     vec1={1,2,3,4};
-    vector<int> vec2({1,2,3,4,5});
-    vector_ssr<int> vec3(10,0);
+    vector_ssr<int> vec3(temp);
+    cout<<vec3.size()<<" "<<vec3.capacity()<<endl;
     Test::log_container(vec1,"vector");
     Test::log_container(vec3,"vector_ssr");
     return 0;

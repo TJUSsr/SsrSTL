@@ -13,6 +13,7 @@
 #include "../utils_iterator/Iterator.h"
 #include "../utils_iterator/ReverseIterator.h"
 #include "../utils_logs/logger.h"
+#include "../utils_test/TestUtil.h"
 
 namespace SSRSTL{
     /*
@@ -195,16 +196,12 @@ namespace SSRSTL{
         };
         template <class InputIterator>
         void vector_aux( InputIterator first,  InputIterator last, std::false_type){
-            SPDLOG_TRACE(console,"in {}()", __FUNCTION__);
             allocAndCopy(first,last);
-            SPDLOG_TRACE(console,"out {}()", __FUNCTION__);
         };
 
         template <class Integer>
         void vector_aux( Integer n, const value_type& value, std::true_type){
-            SPDLOG_TRACE(console,"in {}()", __FUNCTION__);
             allocAndFillN(n,value);
-            SPDLOG_TRACE(console,"out {}()", __FUNCTION__);
         };
 
         template <class InputIterator>

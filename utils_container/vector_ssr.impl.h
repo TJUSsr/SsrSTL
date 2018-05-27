@@ -21,15 +21,12 @@ namespace SSRSTL{
     template<typename T, class Alloc>
     template<class InputIterator>
     vector_ssr<T,Alloc>::vector_ssr( InputIterator first, InputIterator last) {
-        SPDLOG_TRACE(console,"in {}()", __FUNCTION__);
         vector_aux(first,last,typename std::is_integral<InputIterator>::type());
-        SPDLOG_TRACE(console,"out {}()", __FUNCTION__);
+        Test::log_container(*this,"vector_ssr");
     }
     template<typename T, class Alloc>
     vector_ssr<T,Alloc>::vector_ssr(const std::initializer_list<T>& list) {
-        SPDLOG_TRACE(console,"in {}()", __FUNCTION__);
-        vector_ssr(list.begin(),list.end());
-        SPDLOG_TRACE(console,"out {}()", __FUNCTION__);
+        allocAndCopy(list.begin(),list.end());
     }
 
     //复制构造函数
@@ -69,7 +66,7 @@ namespace SSRSTL{
 
     template<typename T, class Alloc>
     vector_ssr<T,Alloc>& vector_ssr<T,Alloc>::operator=(const std::initializer_list<T>& list) {
-        SPDLOG_TRACE(console,"in {}()",__FUNCTION__);
+        Test::log_container(list,"initialized_list");
         if(size()>=list.size()){
             dataAlloc::destroy(start_+list.size(),finish_);
             SSRSTL::uninitialized_copy(list.begin(),list.end(),start_);
@@ -81,7 +78,7 @@ namespace SSRSTL{
             destroyAndDeallocate();
             allocAndCopy(list.begin(),list.end());
         }
-        SPDLOG_TRACE(console,"out {}",__FUNCTION__);
+        return *this;
     }
 
     //析构函数
