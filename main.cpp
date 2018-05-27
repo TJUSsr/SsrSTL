@@ -32,6 +32,7 @@ int main() {
     vec1={1,2,3,4};
     vector<int> vec2({1,2,3,4,5});
     vector_ssr<int> vec3={1,2,3,4,5,6};
+    vec3={1,2,3};
     Test::log_container(vec1,"vector");
     return 0;
 }
