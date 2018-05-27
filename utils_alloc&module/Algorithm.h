@@ -198,7 +198,7 @@ namespace SSRSTL{
         const auto range=last-first;
         auto index=range/2-1;
         for(auto cur=first+index;cur>=first;--cur,--index){
-            if(comp(*cur,*(first+index*2+1))||(first+index*2+2<last)&&comp(*cur,*(first+index*2+2))){
+            if(comp(*cur,*(first+index*2+1))||((first+index*2+2<last)&&comp(*cur,*(first+index*2+2)))){
                 return false;
             }
             if(cur==first)

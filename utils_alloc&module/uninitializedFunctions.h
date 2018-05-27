@@ -31,7 +31,7 @@ namespace SSRSTL{
     };
     template <class InputIterator, class ForwardIterator>
     ForwardIterator uninitialized_copy(InputIterator first, InputIterator last, ForwardIterator result){
-        typedef typename _type_traits<_iterator_traits<InputIterator>::value_type>::is_POD_type is_POD_type;
+        typedef typename _type_traits<typename _iterator_traits<InputIterator>::value_type>::is_POD_type is_POD_type;
         return  _uninitialized_copy_aux(first,last,result,is_POD_type());
     };
 

@@ -69,36 +69,36 @@ namespace SSRSTL{
         reverse_iterator_t& operator-=(difference_type n);
 
         //声明友元函数 双参数+,-,==,!=,>,<,>=,<=
-        template<typename Iterator>
-        friend reverse_iterator_t<Iterator> operator+(typename reverse_iterator_t<Iterator>::difference_type n,
-        const reverse_iterator_t<Iterator>& rev_it);
+        template<typename Ite>
+        friend reverse_iterator_t<Ite> operator+(typename reverse_iterator_t<Ite>::difference_type n,
+        const reverse_iterator_t<Ite>& rev_it);
 
-       template <typename Iterator>
-        friend reverse_iterator_t<Iterator> operator-(typename reverse_iterator_t<Iterator>::difference_type n,
-        const reverse_iterator_t<Iterator>& rev_it);
+       template <typename Ite>
+        friend reverse_iterator_t<Ite> operator-(typename reverse_iterator_t<Ite>::difference_type n,
+        const reverse_iterator_t<Ite>& rev_it);
 
-        template <typename Iterator>
-        friend bool operator==(const reverse_iterator_t<Iterator>& lhs,
-                const reverse_iterator_t<Iterator>& rhs);
+        template <typename Ite>
+        friend bool operator==(const reverse_iterator_t<Ite>& lhs,
+                const reverse_iterator_t<Ite>& rhs);
 
-        template <typename Iterator>
-        friend bool operator!=(const reverse_iterator_t<Iterator>& lhs,
-                               const reverse_iterator_t<Iterator>& rhs);
+        template <typename Ite>
+        friend bool operator!=(const reverse_iterator_t<Ite>& lhs,
+                               const reverse_iterator_t<Ite>& rhs);
 
-        template <typename Iterator>
-        friend bool operator>(const reverse_iterator_t<Iterator>& lhs,
-                               const reverse_iterator_t<Iterator>& rhs);
+        template <typename Ite>
+        friend bool operator>(const reverse_iterator_t<Ite>& lhs,
+                               const reverse_iterator_t<Ite>& rhs);
 
-        template <typename Iterator>
-        friend bool operator<(const reverse_iterator_t<Iterator>& lhs,
-                               const reverse_iterator_t<Iterator>& rhs);
+        template <typename Ite>
+        friend bool operator<(const reverse_iterator_t<Ite>& lhs,
+                               const reverse_iterator_t<Ite>& rhs);
 
-        template <typename Iterator>
-        friend bool operator>=(const reverse_iterator_t<Iterator>& lhs,
-                               const reverse_iterator_t<Iterator>& rhs);
-        template <typename Iterator>
-        friend bool operator<=(const reverse_iterator_t<Iterator>& lhs,
-                               const reverse_iterator_t<Iterator>& rhs);
+        template <typename Ite>
+        friend bool operator>=(const reverse_iterator_t<Ite>& lhs,
+                               const reverse_iterator_t<Ite>& rhs);
+        template <typename Ite>
+        friend bool operator<=(const reverse_iterator_t<Ite>& lhs,
+                               const reverse_iterator_t<Ite>& rhs);
     private:
         Iterator base_;
         Iterator cur_;

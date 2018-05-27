@@ -5,6 +5,10 @@
 #ifndef SSRSTL_VECTOR_SSR_H
 #define SSRSTL_VECTOR_SSR_H
 
+//为了用std中的is_integer,以及true_type,false_type
+#include <numeric>
+#include <initializer_list>
+#include "../utils_alloc&module/uninitializedFunctions.h"
 #include "../utils_alloc&module/Allocator.h"
 #include "../utils_iterator/Iterator.h"
 #include "../utils_iterator/ReverseIterator.h"
@@ -15,12 +19,6 @@ namespace SSRSTL{
      */
     template <typename T, class Alloc=Allocator<T>>
     class vector_ssr{
-    public:
-        void set_to_nullptr(){
-            start_= nullptr;
-            finish_= nullptr;
-            endOfStorage_= nullptr;
-        };
     private:
         T* start_;
         T* finish_;
@@ -44,17 +42,20 @@ namespace SSRSTL{
         explicit vector_ssr(const size_type& n);
 
         vector_ssr(const size_type& n, const value_type& value);
+        vector_ssr(const std::initializer_list<T>& list);
 
         template <class InputIterator>
         vector_ssr(const InputIterator& first,const InputIterator& last);
         //复制构造函数
         vector_ssr(const vector_ssr& v);
-        //移动语义构造函数
-        vector_ssr(vector_ssr&& v);
+        //移动语义构造函数,不会抛出异常
+        vector_ssr(vector_ssr&& v) noexcept;
         //赋值运算符
         vector_ssr& operator=(const vector_ssr& v);
         //移动予以运算符
         vector_ssr& operator=(vector_ssr&& v);
+        //利用初始化列表初始化
+        vector_ssr& operator=(const std::initializer_list<T>& list);
         //设置成虚函数,考虑到后面会设计线程安全的vector,可以继承该vector_ssr实现多态
         ~vector_ssr();
 
@@ -63,11 +64,11 @@ namespace SSRSTL{
 
         bool operator!=(const vector_ssr& v) const;
 
-        template <typename T, class Alloc=Allocator<T>>
-        friend bool operator==(const vector_ssr<T,Alloc>& lhs, const vector_ssr<T,Alloc> rhs);
+        template <typename t, class alloc>
+        friend bool operator==(const vector_ssr<t,alloc>& lhs, const vector_ssr<t,alloc>& rhs);
 
-        template <typename T, class Alloc=Allocator<T>>
-        friend bool operator==(const vector_ssr<T,Alloc>& lhs, const vector_ssr<T,Alloc> rhs);
+        template <typename t, class alloc>
+        friend bool operator==(const vector_ssr<t,alloc>& lhs, const vector_ssr<t,alloc>& rhs);
 
         /*
          * 迭代器相关的函数
@@ -145,7 +146,7 @@ namespace SSRSTL{
         void destroyAndDeallocate(){
             if(capacity()!=0){
                 dataAlloc::destroy(start_,finish_);
-                dataAlloc::deallocate(start_,endOfStorage_);
+                dataAlloc::deallocate(start_,capacity());
             }
         };
         //用来申请内存并且构造
@@ -192,12 +193,12 @@ namespace SSRSTL{
             endOfStorage_=newendOfStorage;
         };
         template <class InputIterator>
-        void vector_aux(const InputIterator& first, const InputIterator& last, std::false_type ){
+        void vector_aux(const InputIterator& first, const InputIterator& last, std::false_type){
             allocAndCopy(first,last);
         };
 
         template <class Integer>
-        void vector_aux(const Integer& n,  const value_type& value, std::true_type ){
+        void vector_aux(const Integer& n,  const value_type& value, std::true_type){
             allocAndFillN(n,value);
         };
 
@@ -212,12 +213,8 @@ namespace SSRSTL{
         };
 
     };
-
-
-
-#include "vector_ssr.impl.h"
-
 }
+#include "vector_ssr.impl.h"
 
 
 #endif //SSRSTL_VECTOR_SSR_H

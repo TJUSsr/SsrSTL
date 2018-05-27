@@ -4,10 +4,11 @@
  * 利用SPDLOG_TRACE以及SPDLOG_DEBUG宏定义可以实现运行时Compile time log levels
  */
 #include <iostream>
-#include "utils_alloc&module/Algorithm.h"
+#include "utils_container/vector_ssr.h"
 #include "utils_logs/logger.h"
 #include <memory>
 #include <vector>
+#include "utils_test/TestUtil.h"
 
 using namespace std;
 using namespace SSRSTL;
@@ -23,13 +24,14 @@ void show(std::true_type){
     cout<<"true"<<endl;
 }
 
+#include "utils_container/vector_ssr.h"
+
 int main() {
     init();
-    std::true_type;
-    is_integral<int>::value_type();
-    vector<int> vec1={1,2,3,4,5,6};
-    cout<<vec1.capacity()<<endl;
-    vec1.resize(vec1.capacity()+7);
-    cout<<vec1.capacity()<<endl;
+    vector<int> vec1={1,2,3,4,5};
+    vec1={1,2,3,4};
+    vector<int> vec2({1,2,3,4,5});
+    vector_ssr<int> vec3={1,2,3,4,5,6};
+    Test::log_container(vec1,"vector");
     return 0;
 }

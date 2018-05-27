@@ -28,7 +28,7 @@ set(SsrSTL main.cpp
         utils_typetraits/Typetraits.h
         utils_iterator/Iterator.h
         utils_iterator/ReverseIterator.h
-        utils_container/vector_ssr.h utils_container/vector_ssr.impl.h utils_alloc&module/uninitializedFunctions.h utils_alloc&module/Algorithm.h utils_container/pair_ssr.h utils_alloc&module/Functional.h)
+        utils_container/vector_ssr.h utils_container/vector_ssr.impl.h utils_alloc&module/uninitializedFunctions.h utils_alloc&module/Algorithm.h utils_container/pair_ssr.h utils_alloc&module/Functional.h utils_test/TestUtil.h utils_test/VectorTest.h)
 
 #生成可执行文件
 add_executable(SsrSTL_${CMAKE_BUILD_TYPE}_${CMAKE_CXX_PLATFORM_ID} ${SsrSTL})
