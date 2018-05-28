@@ -16,7 +16,7 @@
 #ifdef WIN32
 #include <Windows.h>
 #include <Psapi.h>
-#pragma comment(lob,"psapi.lib")
+#pragma comment(lib,"psapi.lib")
 #else
 #include <sys/resource.h>
 #include <sys/time.h>

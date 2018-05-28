@@ -535,7 +535,7 @@ namespace SSRSTL{
         if(first1==last1)
             return true;
         auto last2=first2;
-        SSRSTL::advance(last2,std::distance(first1,last1));
+        SSRSTL::advance(last2,distance(first1,last1));
         typedef typename SSRSTL::_iterator_traits<ForwardIterator1>::value_type value_type;
         for(auto it1=first1; it1!=last1;++it1){
             if(SSRSTL::find_if(first1,it1,[&](value_type val){ return pred(val,*it1);})==it1){
@@ -631,7 +631,7 @@ namespace SSRSTL{
      */
     template<class InputIterator, class OutputIterator>
     OutputIterator __copy(InputIterator first, InputIterator last, OutputIterator result, SSRSTL::_true_type){
-        auto dis=std::distance(first,last);
+        auto dis= distance(first,last);
         memcpy(result,first,dis*sizeof(*first));
         advance(result,dis);
         return result;

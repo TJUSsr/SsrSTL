@@ -49,8 +49,9 @@ void testssr(){
 
 int main() {
     init();
+    SPDLOG_TRACE(console,"SPDLOG Test");
+    console->trace("SPDLOG TEST");
     teststd();
     cout<<endl;
-    testssr();
     return 0;
 }
