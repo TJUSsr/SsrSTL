@@ -8,6 +8,7 @@
 #include "../utils_container/vector_ssr.h"
 #include "TestUtil.h"
 #include <vector>
+#include <string>
 
 namespace SSRSTL{
     namespace VectorTest{
@@ -31,6 +32,7 @@ namespace SSRSTL{
         void testCase12();
         void testCase13();
         void testCase14();
+        void testCase15();
 
         void testAllCases();
 

@@ -39,7 +39,7 @@ namespace SSRSTL{
         typedef size_t                              size_type;
         typedef ptrdiff_t                           difference_type;
 
-        vector_ssr():start_(nullptr),finish_(nullptr),endOfStorage_(nullptr){};
+        vector_ssr():start_(0),finish_(0),endOfStorage_(0){};
 
         explicit vector_ssr(const size_type& n);
 
@@ -168,7 +168,7 @@ namespace SSRSTL{
 
         template <class InputIterator>
         void reallocAndCopy(iterator position, const InputIterator& first, const InputIterator last){
-            auto n=SSRSTL::distance(first,last);
+            auto n=std::distance(first,last);
             size_type newCapacity=getNewCapacity(n);
             iterator newstart=dataAlloc::allocate(n);
             iterator newend=newstart+newCapacity;
@@ -206,12 +206,29 @@ namespace SSRSTL{
 
         template <class InputIterator>
         void insert_aux(iterator position, InputIterator first, InputIterator last, std::false_type){
-            reallocAndCopy(position,first,last);
+            auto locationLeft=endOfStorage_-finish_;
+            auto locationNeed=std::distance(first,last);
+            if(locationLeft>=locationNeed){
+                std::copy_backward(position,finish_,finish_+locationNeed);
+                std::copy(first,last,position);
+                finish_+=locationNeed;
+            } else{
+                reallocAndCopy(position,first,last);
+            }
         };
 
         template <class Integer>
         void insert_aux(iterator position, Integer n, const value_type& value, std::true_type){
-            reallocAndFillN(position,n,value);
+            assert(n!=0);
+            auto locationLeft=endOfStorage_-finish_;
+            auto locationNeed=n;
+            if(locationLeft>=locationNeed){
+                std::copy_backward(position,finish_,finish_+n);
+                SSRSTL::uninitialized_fill_n(position,n,value);
+                finish_+=locationNeed;
+            }else{
+                reallocAndFillN(position,n,value);
+            }
         };
 
     };

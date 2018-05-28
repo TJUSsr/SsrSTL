@@ -178,7 +178,7 @@ namespace SSRSTL{
     template<typename T, class Alloc>
     typename vector_ssr<T,Alloc>::iterator vector_ssr<T, Alloc>::insert(vector_ssr::iterator position,
                                                                const value_type &value) {
-        auto dis=SSRSTL::distance(begin(),position);
+        auto dis=std::distance(begin(),position);
         insert(position,1,value);
         return begin()+dis;
     }
