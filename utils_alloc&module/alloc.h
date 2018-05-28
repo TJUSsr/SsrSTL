@@ -5,6 +5,8 @@
 #define SSRSTL_ALLOC_H
 
 #include <cstdlib>
+#include <iostream>
+#include "../utils_logs/logger.h"
 
 /*
  * alloc基本思想，大于128字节的内存利用malloc，小于128字节的内存用维护一个内存池，每块内存的字节数差值为SsrSize::Size
@@ -24,6 +26,46 @@ namespace SSRSTL{
         enum SsrFreeLists{ NumOfFreeLists = (SsrMaxBytes::Maxbytes / SsrSize::Size)};
         //小块内存不够时所增加的内存块数
         enum SsrObjs{NumOfObjs=20};
+        /*
+         * 这个联合体理解较为困难，但是最终应用起来可以按照如下的意思去理解
+         * obj* ptr
+         * 则ptr，(void*)ptr, ptr->client, &ptr->next都是当前的内存块
+         * ptr->next, (void*)(ptr->next) 是下一个内存块
+         * 写了如下一段程序可以帮助理解
+         *
+int main() {
+    union obj{
+        obj* free_list_link;
+        char client_data[1];
+    };
+    char mem[100] = { 0 };
+    char mem1[100] = { 0 };
+
+    //现在是每一块内存的开始均是一个union node结构
+    //----------------------------------
+    //| union obj | ....................
+    // ----------------------------------
+    union obj *p1 = (union obj *)mem; //用一个变量表示这个结构
+
+    //p1->free_list_link 设置为下一个内存的起始段
+    p1->free_list_link = (union obj *)mem1 ;
+
+    //以下五个值的结果都是一样的
+    cout <<"mem                        = " << (void *)mem << endl;
+    cout <<"p1                         = " << p1 << endl;
+    cout <<"(void*)p1                  = " << (void *)p1 << endl;
+    cout <<"p1->client_data            = " << (void *)p1->client_data << endl;
+    cout <<"&p1->free_list_link        = " << &(p1->free_list_link) << endl;
+
+    cout<<endl;
+
+    cout <<"p1->free_list_link         = " << p1->free_list_link << endl;
+    cout <<"(void *)p1->free_list_link = " << (void *)p1->free_list_link << endl;
+    cout <<"mem1                       = " << (void *)mem1 << endl;
+
+    return 0;
+}
+         */
         union obj{
             obj* next;
             char client[1];

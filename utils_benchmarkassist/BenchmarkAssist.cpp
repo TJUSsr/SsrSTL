@@ -18,7 +18,7 @@ namespace SSRSTL{
         }
 
         void BmAssist::dumpDuringTime(){
-            SPDLOG_TRACE(console,"total {} milliseconds, {} seconds", BmAssist::millissecond(), BmAssist::second());
+            console->trace("total {} milliseconds, {} seconds", BmAssist::millissecond(), BmAssist::second());
         }
 
         double BmAssist::second() {

@@ -1,13 +1,14 @@
 //
 // Created by Administrator on 2018/5/10.
 //
-#include "../ssrstl_lib/spdlog/spdlog.h"
-#include <iostream>
+
 
 #ifndef SSRSTL_LOGGER_H
 #define SSRSTL_LOGGER_H
 
-
+#define SPDLOG_TRACE_ON
+#define SPDLOG_DEBUG_ON
+#include "../ssrstl_lib/spdlog/spdlog.h"
 
 namespace SSRSTL{
 

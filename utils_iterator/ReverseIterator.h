@@ -115,9 +115,9 @@ namespace SSRSTL{
     reverse_iterator_t<Iterator>::reverse_iterator_t():base_(nullptr),cur_(nullptr){}
 
     template<typename Iterator>
-    reverse_iterator_t<Iterator>::reverse_iterator_t(const iterator_type &it):base_(it) {
+    reverse_iterator_t<Iterator>::reverse_iterator_t(const iterator_type& it):base_(it) {
         auto temp=it;
-        cur_=--it;
+        cur_=--temp;
     }
     template<typename Iterator>
     template<typename Ite>

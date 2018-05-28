@@ -5,10 +5,13 @@
 #ifndef SSRSTL_VECTORTEST_H
 #define SSRSTL_VECTORTEST_H
 
-#include "../utils_container/vector_ssr.h"
-#include "TestUtil.h"
 #include <vector>
 #include <string>
+#include <iostream>
+
+#include "TestUtil.h"
+#include "../utils_container/vector_ssr.h"
+#include "../utils_logs/logger.h"
 
 namespace SSRSTL{
     namespace VectorTest{

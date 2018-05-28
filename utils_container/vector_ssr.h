@@ -8,6 +8,7 @@
 //为了用std中的is_integer,以及true_type,false_type
 #include <numeric>
 #include <initializer_list>
+
 #include "../utils_alloc&module/uninitializedFunctions.h"
 #include "../utils_alloc&module/Allocator.h"
 #include "../utils_iterator/Iterator.h"
@@ -39,7 +40,8 @@ namespace SSRSTL{
         typedef size_t                              size_type;
         typedef ptrdiff_t                           difference_type;
 
-        vector_ssr():start_(0),finish_(0),endOfStorage_(0){};
+        vector_ssr():start_(0),finish_(0),endOfStorage_(0){
+        };
 
         explicit vector_ssr(const size_type& n);
 
@@ -182,7 +184,7 @@ namespace SSRSTL{
         };
 
         void reallocAndFillN(iterator position, const size_type& n, const value_type& val){
-            size_type newCapacity=getNewCapacity(n);
+            auto newCapacity=getNewCapacity(n);
             iterator newstart=dataAlloc::allocate(newCapacity);
             iterator newendOfStorage=newstart+newCapacity;
             //先拷贝插入点前的部分，再fill_n,之后再拷贝插入点之后的部分
@@ -209,8 +211,16 @@ namespace SSRSTL{
             auto locationLeft=endOfStorage_-finish_;
             auto locationNeed=std::distance(first,last);
             if(locationLeft>=locationNeed){
-                std::copy_backward(position,finish_,finish_+locationNeed);
-                std::copy(first,last,position);
+                //之所以这样做的一个原因是uninitialized_copy底层是copy_forward,所以才设计的这么复杂
+                if(finish_-position>locationNeed){
+                    SSRSTL::uninitialized_copy(finish_-locationNeed,finish_,finish_);//该区域没有元素被构造，所以不能用copy_backward
+                    std::copy_backward(position,finish_-locationNeed,finish_);//copy_backward底层是单纯的复制，不涉及构造
+                    std::copy(first,last,position);
+                }else{
+                    auto temp=SSRSTL::uninitialized_copy(first+(finish_-position),last,finish_);
+                    SSRSTL::uninitialized_copy(position,finish_,temp);
+                    std::copy(first,first+(finish_-position),position);
+                }
                 finish_+=locationNeed;
             } else{
                 reallocAndCopy(position,first,last);

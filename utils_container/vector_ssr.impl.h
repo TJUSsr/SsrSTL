@@ -121,6 +121,7 @@ namespace SSRSTL{
         //n与现有size()的大小有四种关系，但是n==size()时不进行任何操作
         if(n<size()){
             dataAlloc::destroy(start_+n,finish_);
+            finish_=start_+n;
         }else if(n>size()&&n<=capacity()){
             auto lengthOfInsert=n-size();
             finish_=SSRSTL::uninitialized_fill_n(finish_,lengthOfInsert,value);
@@ -181,6 +182,7 @@ namespace SSRSTL{
         auto dis=std::distance(begin(),position);
         insert(position,1,value);
         return begin()+dis;
+
     }
     template<typename T, class Alloc>
     void vector_ssr<T, Alloc>::insert(vector_ssr::iterator position, const vector_ssr::size_type &n,
@@ -195,7 +197,8 @@ namespace SSRSTL{
 
     template<typename T, class Alloc>
     typename vector_ssr<T,Alloc>::iterator vector_ssr<T, Alloc>::erase(vector_ssr::iterator position) {
-        return erase(position,position+1);
+        auto res=erase(position,position+1);
+        return res;
     }
     //first,last前闭后开，last不会被删除
     template<typename T, class Alloc>
@@ -203,7 +206,7 @@ namespace SSRSTL{
         auto lenOfTail=end()-last;
         auto lenOfRemoved=last-first;
         finish_=finish_-lenOfRemoved;
-        for(;lenOfRemoved!=0;--lenOfRemoved){
+        for(;lenOfTail!=0;--lenOfTail){
             auto temp=last-lenOfRemoved;
             *temp=*(last++);
         }

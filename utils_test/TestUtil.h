@@ -5,10 +5,13 @@
 #ifndef SSRSTL_TESTUTIL_H
 #define SSRSTL_TESTUTIL_H
 
-#include "../utils_logs/logger.h"
+
 #include <iterator>
 #include <string>
 #include <iostream>
+
+#include "../utils_logs/logger.h"
+
 namespace SSRSTL{
     namespace Test{
         template <class Container>

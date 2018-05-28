@@ -1,20 +1,23 @@
 //
 // Created by Administrator on 2018/5/8.
 //
+#include <iostream>
 #include "alloc.h"
 namespace SSRSTL{
-    char* alloc::start_free=nullptr;
-    char* alloc::end_free=nullptr;
+    char* alloc::start_free=0;
+    char* alloc::end_free=0;
     size_t alloc::heap_size=0;
     //贯彻了Cpp的RAII思想，用时资源初始化。
-    alloc::obj* alloc::free_list[alloc::SsrFreeLists::NumOfFreeLists]={nullptr};
+    alloc::obj* alloc::free_list[alloc::SsrFreeLists::NumOfFreeLists]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     void* alloc::allocate(size_t bytes) {
         if(bytes>SsrMaxBytes::Maxbytes)//申请大内存直接调用malloc()
             return malloc(bytes);
         size_t index=FREELIST_INDEX(bytes);
         obj* list=free_list[index];
-        if(list){//该内存块存在的话直接返回
+
+        if(list!=0){//该内存块存在的话直接返回
+            std::cout<<list<<" and "<<list->next<<std::endl;
             free_list[index]=list->next;
             return list;//注意这里发生了隐式的类型转换，list原本是指向obj类型的指针，返回一个void指针
         }else{//若该块内存不存在，则调用refill()函数来进行相应的处理
@@ -29,9 +32,9 @@ namespace SSRSTL{
         else{//小块内存直接返回给内存池
             size_t index=FREELIST_INDEX(bytes);
             //利用static_cast<>()完成强制类型转换
-            auto temp= static_cast<obj*>(ptr);
+            obj* temp= static_cast<obj*>(ptr);
             temp->next=free_list[index];
-            free_list[index]->next=temp;
+            free_list[index]=temp;
         }
     }
     void* alloc::reallocate(void *ptr, size_t old_sz, size_t new_sz) {
@@ -44,10 +47,10 @@ namespace SSRSTL{
         size_t nobjs=SsrObjs ::NumOfObjs;
         //从内存池取内存
         char* ptr=chunk_alloc(n,nobjs);
-        obj** my_free_list= nullptr;
-        obj* res= nullptr;
-        obj* current_obj= nullptr;
-        obj* next_obj= nullptr;
+        obj** my_free_list= 0;
+        obj* res= 0;
+        obj* current_obj= 0;
+        obj* next_obj= 0;
         if(nobjs==1){
             return ptr;
         }else{
@@ -55,11 +58,12 @@ namespace SSRSTL{
             res=(obj *) ptr;
             *my_free_list=next_obj=(obj*)(ptr+n);
             //将多余的内存放入free_list
-            for(int i=1;i<nobjs;++i){
+            for(int i=1;;++i){
                 current_obj=next_obj;
                 next_obj=(obj*)((char*)next_obj+n);
                 if(i==nobjs-1){
-                    current_obj->next= nullptr;
+                    current_obj->next= 0;
+                    break;
                 }else{
                     current_obj->next=next_obj;
                 }
@@ -84,7 +88,7 @@ namespace SSRSTL{
      * 再然后递归调用_chunk_malloc函数。
      */
     char* alloc::chunk_alloc(size_t bytes, size_t &nobjs) {
-        char* res= nullptr;
+        char* res= 0;
         size_t totalbytes=bytes*nobjs;
         size_t bytes_left=end_free-start_free;
         if(bytes_left>=totalbytes){
@@ -111,12 +115,12 @@ namespace SSRSTL{
             start_free=(char*) malloc(bytes_to_get);
             if(!start_free){
                 //malloc()申请内存失败
-                obj** my_free_list= nullptr;
-                obj* p= nullptr;
+                obj** my_free_list= 0;
+                obj* p= 0;
                 for(int i=0;i<=SsrMaxBytes::Maxbytes;i+=SsrSize::Size){
                     my_free_list=free_list+FREELIST_INDEX(i);
                     p=*my_free_list;
-                    if(p!= nullptr){
+                    if(p!= 0){
                         *my_free_list=p->next;
                         start_free=(char*)p;
                         end_free=start_free+i;
