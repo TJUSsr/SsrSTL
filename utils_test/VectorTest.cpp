@@ -24,7 +24,9 @@ namespace SSRSTL{
             testCase13();
             testCase14();
             testCase15();
-            SPDLOG_TRACE(console,"In {} Function", __FUNCTION__);
+            benchmarkteststdvector();
+            benchmarktestvectorssr();
+            SPDLOG_TRACE(console,"Out {} Function", __FUNCTION__);
         }
 
         void testCase1(){
@@ -252,15 +254,12 @@ namespace SSRSTL{
         public:
             TestItem(){
                 ++count;
-                //SPDLOG_TRACE(console,"create a TestItem, and the count is {}", TestItem::count);
             }
             TestItem(const TestItem& other){
                 ++count;
-                //SPDLOG_TRACE(console,"create a TestItem, and the count is {}", TestItem::count);
             };
             virtual ~TestItem(){
                 --count;
-                //SPDLOG_TRACE(console,"destroy a TestItem and the count is {}", TestItem::count);
             }
             static int getCount(){
                 return TestItem::count;
@@ -274,31 +273,48 @@ namespace SSRSTL{
             SPDLOG_TRACE(console,"In {} Function", __FUNCTION__);
             assert(TestItem::getCount()==0);
             {
-                typedef stdvec <TestItem> vec;
-                vec t(10);
-                t.push_back(TestItem());
-                t.push_back(TestItem());
-                t.push_back(TestItem());
-                SPDLOG_TRACE(console,"the size of t is {}",t.size());
-                t.insert(t.begin(),t.begin(),t.begin()+1);
-                SPDLOG_TRACE(console,"the size of t is {}",t.size());
-            }
-            assert(TestItem::getCount()==0);
-            SPDLOG_TRACE(console,"test of stdvec has been done \n");
-
-            assert(TestItem::getCount()==0);
-            {
                 typedef ssrvec <TestItem> vec;
                 vec t(10);
                 t.push_back(TestItem());
                 t.push_back(TestItem());
                 t.push_back(TestItem());
-                SPDLOG_TRACE(console,"the size of t is {}",t.size());
                 t.insert(t.begin(),t.begin(),t.begin()+1);
-                SPDLOG_TRACE(console,"the size of t is {}",t.size());
             }
             assert(TestItem::getCount()==0);
             SPDLOG_TRACE(console,"Out {} Function", __FUNCTION__);
         }
+
+        void benchmarkteststdvector(){
+            SPDLOG_TRACE(console,"In {}",__FUNCTION__);
+            std::vector<int> vec1;
+            auto smemory=Benchmark::BmAssist::memory();
+            SPDLOG_TRACE(console,"{} KB memory at start ",smemory);
+            Benchmark::BmAssist::start();
+            int i=0;
+            for(;i!=10000000;++i){
+                vec1.push_back(i);
+            }
+            auto ememory=Benchmark::BmAssist::memory();
+            SPDLOG_TRACE(console,"{} KB memory at end, cost {} KB memory",ememory, ememory-smemory);
+            Benchmark::BmAssist::finish();
+            Benchmark::BmAssist::dumpDuringTime();
+            SPDLOG_TRACE(console,"Out {}",__FUNCTION__);
+        }
+        void benchmarktestvectorssr(){
+            SPDLOG_TRACE(console,"In {}",__FUNCTION__);
+            SSRSTL::vector_ssr<int> vec1;
+            auto smemory=Benchmark::BmAssist::memory();
+            SPDLOG_TRACE(console,"{} KB memory at start ",smemory);
+            Benchmark::BmAssist::start();
+            int i=0;
+            for(;i!=10000000;++i){
+                vec1.push_back(i);
+            }
+            auto ememory=Benchmark::BmAssist::memory();
+            SPDLOG_TRACE(console,"{} KB memory at start, cost {} KB memory ",ememory,ememory-smemory);
+            Benchmark::BmAssist::finish();
+            Benchmark::BmAssist::dumpDuringTime();
+            SPDLOG_TRACE(console,"Out {}",__FUNCTION__);
+        };
     }
 }

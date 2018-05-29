@@ -17,7 +17,6 @@ namespace SSRSTL{
         obj* list=free_list[index];
 
         if(list!=0){//该内存块存在的话直接返回
-            std::cout<<list<<" and "<<list->next<<std::endl;
             free_list[index]=list->next;
             return list;//注意这里发生了隐式的类型转换，list原本是指向obj类型的指针，返回一个void指针
         }else{//若该块内存不存在，则调用refill()函数来进行相应的处理

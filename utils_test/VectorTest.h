@@ -10,8 +10,9 @@
 #include <iostream>
 
 #include "TestUtil.h"
-#include "../utils_container/vector_ssr.h"
 #include "../utils_logs/logger.h"
+#include "../utils_container/vector_ssr.h"
+#include "../utils_benchmarkassist/BenchmarkAssist.h"
 
 namespace SSRSTL{
     namespace VectorTest{
@@ -36,6 +37,8 @@ namespace SSRSTL{
         void testCase13();
         void testCase14();
         void testCase15();
+        void benchmarkteststdvector();
+        void benchmarktestvectorssr();
 
         void testAllCases();
 
