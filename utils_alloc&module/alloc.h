@@ -81,7 +81,7 @@ int main() {
         }
         //FREELIST_INDEX()函数，根据所需的内存大小bytes得到相应的free_list上的index
         static size_t FREELIST_INDEX(size_t bytes){
-            return ((bytes+SsrSize::Size-1)/(SsrSize::Size-1));
+            return ((bytes+SsrSize::Size-1)/SsrSize::Size-1);
         }
 
         //refill()函数，当free_list上的某块大小的内存没有时，利用该函数申请

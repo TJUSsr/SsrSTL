@@ -11,15 +11,21 @@ namespace SSRSTL{
     alloc::obj* alloc::free_list[alloc::SsrFreeLists::NumOfFreeLists]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     void* alloc::allocate(size_t bytes) {
-        if(bytes>SsrMaxBytes::Maxbytes)//申请大内存直接调用malloc()
+        //申请大内存直接调用malloc()
+        SPDLOG_TRACE(console,"In {}", __FUNCTION__);
+        if(bytes>SsrMaxBytes::Maxbytes){
+            SPDLOG_TRACE(console,"malloc {}", bytes);
             return malloc(bytes);
+        }
         size_t index=FREELIST_INDEX(bytes);
         obj* list=free_list[index];
-
+        SPDLOG_TRACE(console,"request {} size memory block from freelist[{}], and the address of this memory is {}",bytes,index,(void *)list);
         if(list!=0){//该内存块存在的话直接返回
+            SPDLOG_TRACE(console,"the address of next memory is {}", (void *)list->next);
             free_list[index]=list->next;
             return list;//注意这里发生了隐式的类型转换，list原本是指向obj类型的指针，返回一个void指针
         }else{//若该块内存不存在，则调用refill()函数来进行相应的处理
+            SPDLOG_TRACE(console,"this memory doesn't exist, need refill {} size memory",bytes);
             return refill(Round_Up(bytes));
         }
     }

@@ -11,6 +11,7 @@ using namespace SSRSTL;
 
 int main() {
     init();
-    VectorTest::testAllCases();
+    VectorTest::benchmarkteststdvector();
+    VectorTest::benchmarktestvectorssr();
     return 0;
 }
