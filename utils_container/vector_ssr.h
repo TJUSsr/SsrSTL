@@ -119,6 +119,15 @@ namespace SSRSTL{
         //resize函数,第二个形参有默认值
         void resize(size_type n, value_type value = value_type());
         void reserve(size_type n);
+        //重新申请一块内存，大小和当前size()一致
+        void shrink_to_fit(){
+            iterator t= static_cast<iterator >(dataAlloc::allocate(size()));
+            auto newfinish=SSRSTL::uninitialized_copy(start_,finish_,t);
+            destroyAndDeallocate();
+            start_=t;
+            finish_=newfinish;
+            endOfStorage_=finish_;
+        }
 
         /*
          * 修改容器相关的函数,push_back(),pop_back(),insert(),swap(),clear();erase()函数

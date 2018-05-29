@@ -34,7 +34,7 @@ set(SsrSTL main.cpp
         utils_alloc&module/Functional.h utils_test/TestUtil.h
         utils_test/VectorTest.h utils_test/VectorTest.cpp
         utils_benchmarkassist/BenchmarkAssist.h
-        utils_benchmarkassist/BenchmarkAssist.cpp utils_container/String_ssr.h)
+        utils_benchmarkassist/BenchmarkAssist.cpp utils_container/string_ssr.h utils_container/string_ssr.cpp utils_container/avltree_ssr.h utils_container/binarysearchtree_ssr.h utils_container/bitmap_ssr.h utils_othercontainer/cirularbuffer_ssr.h utils_container/deque_ssr.h utils_container/graph_ssr.h utils_container/list_ssr.h utils_smartpointer/shared_ptr_ssr.h utils_smartpointer/weak_ptr_ssr.h utils_smartpointer/unique_ptr_ssr.h utils_container/queue_ssr.h utils_container/stack_ssr.h utils_othercontainer/suffix_array_ssr.h utils_othercontainer/trietree_ssr.h utils_othercontainer/ufset_ssr.h utils_container/unordered_set__ssr.h utils_container/avltree_ssr.impl.h utils_container/binarysearchtree_ssr.impl.h utils_container/bitmap_ssr.impl.h utils_container/circularbuffer_ssr.impl.h utils_container/deque_ssr.impl.h utils_container/graph_ssr.impl.h utils_container/list_ssr.impl.h utils_container/unordered_set_ssr.impl.h utils_test/AvlTreeTest.h utils_test/AvlTreeTest.cpp utils_test/AlgorithmTest.h utils_test/AlgorithmTest.cpp utils_test/BinarySearchTreeTest.h utils_test/BinarySearchTreeTest.cpp utils_test/BitMapTest.h utils_test/BitMapTest.cpp utils_test/CircularBufferTest.h utils_test/CircularBufferTest.cpp utils_test/DequeTest.h utils_test/DequeTest.cpp utils_test/GraphTest.h utils_test/GraphTest.cpp utils_test/ListTest.h utils_test/ListTest.cpp)
 
 #生成可执行文件
 add_executable(SsrSTL_${CMAKE_BUILD_TYPE}_${CMAKE_CXX_PLATFORM_ID} ${SsrSTL})

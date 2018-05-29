@@ -1,0 +1,8 @@
+//
+// Created by Monster on 2018/5/30.
+//
+
+#ifndef SSRSTL_BINARYSEARCHTREE_H
+#define SSRSTL_BINARYSEARCHTREE_H
+
+#endif //SSRSTL_BINARYSEARCHTREE_H
