@@ -39,10 +39,12 @@ namespace SSRSTL{
 			CloseHandle(hProcess);
 			memory=pmc.WorkingSetSize;
 #else
+			//经过测试，该方法只能查询当前进程所占用过的最大内存，无法查询实时内存，令人苦恼。
+			//TODO 内存查询方法需要进一步确定，现在的方法有一定不足，且行且修改
 			struct rusage usage;
             if(getrusage(RUSAGE_SELF,&usage)==-1)
                 throw std::runtime_error("getrusage failed");
-            memory = usage.ru_maxrss;
+            memory = usage.ru_maxrss*4;
 #endif
             switch (mu){
                 case MemoryUnit::KB_:
