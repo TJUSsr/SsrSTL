@@ -39,10 +39,10 @@ namespace SSRSTL{
 			CloseHandle(hProcess);
 			memory=pmc.WorkingSetSize;
 #else
-            rusage usage;
+			struct rusage usage;
             if(getrusage(RUSAGE_SELF,&usage)==-1)
                 throw std::runtime_error("getrusage failed");
-            memory = usage.ru_maxrss/1024;
+            memory = usage.ru_maxrss;
 #endif
             switch (mu){
                 case MemoryUnit::KB_:
