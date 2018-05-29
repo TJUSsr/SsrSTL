@@ -8,13 +8,13 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 include_directories(${PROJET_SOURCE_DIR})
 
 if(WIN32 AND NOT MINGW)
-    message("WIN32 编译设置")
+    message("WIN32 AND NOT MINGW")
 elseif(WIN32 AND MINGW)
-    message("MINGW 编译设置")
+    message("MINGW AND MINGW")
 elseif(UNIX AND NOT ANDROID)
-    message("UNIX 编译设置")
+    message("UNIX AND NOT ANDROID")
 elseif(ANDROID)
-    message("ANDROID 编译设置")
+    message("ANDROID")
 endif()
 
 set(SsrSTL main.cpp
@@ -34,7 +34,7 @@ set(SsrSTL main.cpp
         utils_alloc&module/Functional.h utils_test/TestUtil.h
         utils_test/VectorTest.h utils_test/VectorTest.cpp
         utils_benchmarkassist/BenchmarkAssist.h
-        utils_benchmarkassist/BenchmarkAssist.cpp)
+        utils_benchmarkassist/BenchmarkAssist.cpp utils_container/String_ssr.h)
 
 #生成可执行文件
 add_executable(SsrSTL_${CMAKE_BUILD_TYPE}_${CMAKE_CXX_PLATFORM_ID} ${SsrSTL})

@@ -1,3 +1,5 @@
+// All files UTF-8
+
 #include <iostream>
 #include <memory>
 
