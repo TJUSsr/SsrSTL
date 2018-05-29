@@ -287,14 +287,14 @@ namespace SSRSTL{
         void benchmarkteststdvector(){
             SPDLOG_TRACE(console,"In {}",__FUNCTION__);
             std::vector<int> vec1;
-            auto smemory=Benchmark::BmAssist::memory(Benchmark::BmAssist::MemoryUnit::MB_);
+            auto smemory=Benchmark::BmAssist::memory(Benchmark::BmAssist::MemoryUnit::KB_);
             SPDLOG_TRACE(console,"{} KB memory at start ",smemory);
             Benchmark::BmAssist::start();
             int i=0;
             for(;i!=10000000;++i){
                 vec1.push_back(i);
             }
-            auto ememory=Benchmark::BmAssist::memory(Benchmark::BmAssist::MemoryUnit::MB_);
+            auto ememory=Benchmark::BmAssist::memory(Benchmark::BmAssist::MemoryUnit::KB_);
             SPDLOG_TRACE(console,"{} KB memory at end, cost {} KB memory, and the size of vec is {}",ememory, ememory-smemory,vec1.size());
             Benchmark::BmAssist::finish();
             Benchmark::BmAssist::dumpDuringTime();
@@ -303,14 +303,14 @@ namespace SSRSTL{
         void benchmarktestvectorssr(){
             SPDLOG_TRACE(console,"In {}",__FUNCTION__);
             SSRSTL::vector_ssr<int> vec1;
-            auto smemory=Benchmark::BmAssist::memory(Benchmark::BmAssist::MemoryUnit::MB_);
+            auto smemory=Benchmark::BmAssist::memory(Benchmark::BmAssist::MemoryUnit::KB_);
             SPDLOG_TRACE(console,"{} KB memory at start ",smemory);
             Benchmark::BmAssist::start();
             int i=0;
             for(;i!=10000000;++i){
                 vec1.push_back(i);
             }
-            auto ememory=Benchmark::BmAssist::memory(Benchmark::BmAssist::MemoryUnit::MB_);
+            auto ememory=Benchmark::BmAssist::memory(Benchmark::BmAssist::MemoryUnit::KB_);
             SPDLOG_TRACE(console,"{} KB memory at end, cost {} KB memory, and the size of vec is {}",ememory,ememory-smemory,vec1.size());
             Benchmark::BmAssist::finish();
             Benchmark::BmAssist::dumpDuringTime();

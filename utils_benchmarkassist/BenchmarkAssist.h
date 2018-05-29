@@ -31,7 +31,7 @@ namespace SSRSTL{
             typedef std::chrono::duration<double,std::ratio<1,1>> DurationTime;//单位秒
             enum class MemoryUnit{KB_,MB_,GB_};
         private:
-            #define KB / 1
+            #define KB / 1024
             #define MB KB /1024
             #define GB MB /1024
 
