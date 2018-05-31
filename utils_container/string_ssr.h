@@ -44,6 +44,10 @@ namespace SSRSTL{
         //一些私有函数
         void moveData(string_ssr& str);
         size_type getNewCapacity(size_type len) const;
+        
+        void allocateAndFillN(size_type n, value_type c);
+        template <class InputIterator>
+        void allocateAndCopy(InputIterator first, InputIterator last);
 
         template <class InputIterator>
         iterator insert_aux_copy(iterator position, InputIterator first, InputIterator last);
@@ -52,15 +56,14 @@ namespace SSRSTL{
         void string_ssr_aux(size_type n, value_type c, std::true_type);
         template <class InputIterator>
         void string_ssr_aux(InputIterator first, InputIterator last, std::false_type);
-
-        void allocateAndFillN(size_type n, value_type c);
-        template <class InputIterator>
-        void allocateAndCopy(InputIterator first, InputIterator last);
-
-        size_type rfind_aux(const_iterator cit, size_type position, size_type lengthOfS, int cond) const;
+        
+        //判断[position, position+lengthOfS)是否和it所指向的序列相同,返回开始相同的位置
         size_type find_aux(const_iterator it, size_type position, size_type lengthOfS, int cond) const;
-
+        size_type rfind_aux(const_iterator cit, size_type position, size_type lengthOfS, int cond) const;
+        
+        //将两个序列按照字典序来进行比较
         int compare_aux(size_type position,size_type len, const_iterator cit, size_type subpos, size_type sublen) const;
+        //判断ch是否在[first, last)中
         bool isContained(value_type ch,const_iterator first, const_iterator last) const;
 
         void destroyAndDeallocate();
@@ -75,8 +78,6 @@ namespace SSRSTL{
         string_ssr(const_iterator s);
         string_ssr(const_iterator s, size_type n);
         string_ssr(size_type n,value_type c);
-        string_ssr(const std::string& str);
-        string_ssr(const std::string& str,size_type position, size_type len=npos);
         template <class InputIterator>
         string_ssr(InputIterator first, InputIterator last);
 
