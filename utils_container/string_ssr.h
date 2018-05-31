@@ -88,7 +88,6 @@ namespace SSRSTL{
 
         //重栽=运算符
         string_ssr& operator=(const string_ssr& str);
-        string_ssr& operator=(const std::string& str);
         string_ssr& operator=(string_ssr&& str);
         string_ssr& operator=(std::string&& str);
         string_ssr& operator=(const_iterator s);

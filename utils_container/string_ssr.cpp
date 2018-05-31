@@ -115,6 +115,81 @@ namespace SSRSTL {
         allocateAndCopy(str.begin()+position, str.begin()+position+len);
     }
     
+    string_ssr::string_ssr(const_iterator s){
+        allocateAndCopy(s, s+strlen(s));
+    }
+    
+    string_ssr::string_ssr(const_iterator s, size_type n){
+        allocateAndCopy(s, s+n);
+    }
+    
+    string_ssr::string_ssr(size_type n, value_type c){
+        allocateAndFillN(n, c);
+    }
+    
+    /*
+     * 复制构造函数
+     */
+    string_ssr::string_ssr(const string_ssr& str){
+        allocateAndCopy(str.start_, str.finish_);
+    }
+    /*
+     * 移动构造函数
+     */
+    string_ssr::string_ssr(string_ssr&& str){
+        moveData(str);
+    }
+    /*
+     * 重栽=运算符
+     */
+    string_ssr& string_ssr::operator=(const string_ssr& str){
+        if(this!=&str){
+            destroyAndDeallocate();
+            allocateAndCopy(str.start_, str.finish_);
+        }
+        return *this;
+    }
+    string_ssr& string_ssr::operator=(string_ssr&& str){
+        if(this!=&str){
+            moveData(str);
+        }
+        return *this;
+    }
+    string_ssr& string_ssr::operator=(const_iterator s){
+        destroyAndDeallocate();
+        allocateAndCopy(s, s+strlen(s));
+        return *this;
+    }
+    string_ssr& string_ssr::operator=(value_type c){
+        destroyAndDeallocate();
+        allocateAndFillN(1, c);
+        return *this;
+    }
+    
+    //析构函数
+    string_ssr::~string_ssr(){
+        destroyAndDeallocate();
+    }
+    
+    /*
+     * 容量相关的函数，clear(), resize(), reserve(), shrink_to_fit()
+     */
+    void string_ssr::clear(){
+        dataAlloc::destroy(start_,finish_);
+        start_=finish_;
+    }
+    void string_ssr::resize(size_type n){
+        resize(n,value_type());
+    }
+    void string_ssr::resize(size_type n, value_type c){
+        if(n<size()){
+            dataAlloc::destroy(start_+n,finish_);
+            finish_=start_+n;
+        }else if(n>size()&&n<=capacity()){
+            
+        }else if(n>capacity()){
+        }
+    }
     
     
 }
