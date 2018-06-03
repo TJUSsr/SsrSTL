@@ -166,9 +166,8 @@ namespace SSRSTL{
         string_ssr& append(InputIterator first, InputIterator last);
 
         string_ssr& operator+=(const string_ssr& str);
-        string_ssr& operator+=(const std::string& str);
         string_ssr& operator+=(const_iterator s);
-        string_ssr& operator+=(char c);
+        string_ssr& operator+=(value_type c);
 
         void push_back(char c){insert(end(),c);}
 

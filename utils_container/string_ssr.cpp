@@ -190,7 +190,41 @@ namespace SSRSTL {
         }else if(n>capacity()){
         }
     }
-    
+    void string_ssr::reserve(size_type n){
+        if(n<=capacity())
+            return;
+        iterator newStart=dataAlloc::allocate(n);
+        iterator newFinish=SSRSTL::uninitialized_copy(begin(), end(), newStart);
+        destroyAndDeallocate();
+        start_=newStart;
+        finish_=newFinish;
+        endOfStorage_=newStart+n;
+    }
+    void string_ssr::shrink_to_fit(){
+        dataAlloc::deallocate(finish_,endOfStorage_-finish_);
+        endOfStorage_=finish_;
+    }
+    /*
+     * 重栽的各种运算符[],=,+=,<,<=,>,>=,!=,==,<<,>>
+     */
+    string_ssr::reference string_ssr::operator[](size_type position){
+        return *(start_+position);
+    }
+    string_ssr::const_reference string_ssr::operator[](size_type position) const{
+        return *(start_+position);
+    }
+    string_ssr& string_ssr::operator+=(const string_ssr& str){
+        insert(size(),str);
+        return *this;
+    }
+    string_ssr& string_ssr::operator+=(const_iterator s){
+        insert(size(), s);
+        return *this;
+    }
+    string_ssr& string_ssr::operator+=(value_type c){
+        insert(end(),c);
+        return *this;
+    }
     
 }
 
