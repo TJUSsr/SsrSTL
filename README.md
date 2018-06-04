@@ -21,8 +21,49 @@ IDE：CLion
 4. 一些有意思的容器，包括但不限于circular buffer, bitmap, skip list, LRU cache, k-d tree, B-tree等
 
 ### 完成进度
- - [ ] 支持以 PDF 格式导出文稿
- - [ ] 改进 Cmd 渲染算法，使用局部渲染技术提高渲染效率
- - [x] 新增 Todo 列表功能
- - [x] 修复 LaTex 公式渲染问题
- - [x] 新增 LaTex 公式编号功能
+
+* 基本组件
+    - [x] 空间配置起
+    - [x] 迭代器，反向迭代器
+    - [x] 迭代器萃取，数据类型萃取 
+    - [x] [SPDLOG](https://github.com/gabime/spdlog)
+    - [x] vector
+    - [ ] string
+    - [ ] priotity_queue
+    - [ ] stack
+    - [ ] deque
+    - [ ] queue
+    - [x] pair
+    - [ ] list
+    - [ ] set
+    - [ ] multiset
+    - [ ] unordered_set
+    - [ ] unordered_multiset
+    - [ ] map
+    - [ ] multimap
+    - [ ] unordered_map
+    - [ ] unordered_multimap
+    - [ ] unique_ptr
+    - [ ] shared_ptr
+    - [ ] weak_ptr
+* STL算法
+    - [x] fill, fill_n, copy
+    - [x] find, find_if, find_if_not, adjacent_find, search
+    - [x] all_of, any_of, none_of
+    - [x] is_heap, make_heap, push_heap, pop_heap, sort_heap
+    - [x] swap
+    - [x] min, max
+    - [x] count, count_if
+    - [x] mismatch, equal, is_permutation
+    - [x] advance, distance, 
+    - [x] sort
+    - [x] generate, generate_n
+* Interesting Containers
+    - [ ] circular_buffer
+    - [ ] bitmap
+    - [ ] binary_search_tree
+    - [ ] avl_tree
+    - [ ] suffix_array
+    - [ ] directed_graph
+    - [ ] trie tree
+    - [ ] Disjoint-set data structure
