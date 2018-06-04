@@ -124,7 +124,7 @@ namespace SSRSTL{
             auto leftChildIndex=index*2+1;
             for(auto cur=first;leftChildIndex<(last-head+1)&&cur<last;leftChildIndex=2*index+1){
                 auto child=head+leftChildIndex;
-                //有右孩子，且有孩子基于comp比较优于左孩子
+                //有右孩子，且右孩子基于comp比较优于左孩子
                 if(child+1<=last&&comp(*child,*(child+1)))
                     child+=1;
                 if(comp(*cur,*child))
@@ -141,7 +141,7 @@ namespace SSRSTL{
     template <class RandomAccessIterator,class Compare>
     void make_heap(RandomAccessIterator first, RandomAccessIterator last, Compare comp){
         const auto range=last-first;
-        //cur指向最后一个parent节点，优于堆是完全二叉树，所以计算出最后一个parent节点之后
+        //cur指向最后一个parent节点，由于堆是完全二叉树，所以计算出最后一个parent节点之后
         //cur之前的均为parent节点，从后往前对每一个parent节点进行down()操作之后便可以得到一个堆
         for(auto cur=first+range/2-1;cur>=first;--cur){
             SSRSTL::down(cur,last-1,first,comp);
