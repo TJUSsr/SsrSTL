@@ -175,20 +175,12 @@ namespace SSRSTL{
         iterator erase(iterator first, iterator last);
 
         string_ssr& replace(size_type position, size_type len, const string_ssr& str);
-        string_ssr& replace(size_type position, size_type len, const std::string& str);
-
         string_ssr& replace(iterator it1, iterator it2, const string_ssr& str);
-        string_ssr& replace(iterator it1, iterator it2, const std::string* str);
-
         string_ssr& replace(size_type position, size_type len, const string_ssr& str, size_type subpos, size_type sublen=npos);
-        string_ssr& replace(size_type position, size_type len, const std::string& str, size_type subpos, size_type sublen=npos);
-
         string_ssr& replace(size_type position, size_type len, const_iterator s);
         string_ssr& replace(iterator it1, iterator it2, const_iterator s);
-
         string_ssr& replace(size_type position, size_type len, const_iterator s, size_type n);
         string_ssr& replace(iterator it1, iterator it2, const_iterator s, size_type n);
-
         string_ssr& replace(size_type position, size_type len, size_type n, char c);
         string_ssr& replace(iterator it1, iterator it2, size_type n, char c);
 

@@ -443,6 +443,32 @@ namespace SSRSTL {
         return *this;
     }
     //erase()函数
-    
+    //此处为前闭后开区间
+    string_ssr::iterator string_ssr::erase(iterator first, iterator last) {
+        size_type lengthTomove=finish_-last;
+        for(auto i=0;i<lengthTomove;++i){
+            *(first+i)=*(last+i);
+        }
+        dataAlloc::destroy(first+lengthTomove,finish_);
+        finish_=first+lengthTomove;
+        return first;
+    }
+    string_ssr& string_ssr::erase(size_type pos, size_type len) {
+        len=changeVarWhenEqualNPOS(len,size(),pos);
+        erase(begin()+pos,begin()+pos+len);
+        return *this;
+    }
+    string_ssr::iterator string_ssr::erase(string_ssr::iterator p) {
+        return erase(p,p+1);
+    }
+    //replace()函数
+    string_ssr &string_ssr::replace(string_ssr::size_type position, string_ssr::size_type len, const string_ssr &str) {
+        return replace(begin()+position,begin()+position+len,str.begin(),str.end());
+    }
+
+    string_ssr &string_ssr::replace(string_ssr::iterator it1, string_ssr::iterator it2, const string_ssr &str) {
+        return replace(it1,it2,str.begin(),str.end());
+    }
+
 }
 
