@@ -225,6 +225,224 @@ namespace SSRSTL {
         insert(end(),c);
         return *this;
     }
+    //重栽输出运算符
+    std::ostream& operator<<(std::ostream& out, const string_ssr& str){
+        for(const auto c:str)
+            out<<c;
+        return out;
+    }
+    //重栽输入运算符
+    std::istream& operator>>(std::istream& in, string_ssr& str){
+        char c;
+        string_ssr::size_type oldsize=str.size(), index=0;
+        bool hasPrevBlank =false;
+        while(in.get(c)){
+            if(c==' '||c=='\n')
+                hasPrevBlank=true;
+            else
+                break;
+        }
+        in.putback(c);
+        str.clear();
+        while(in.get(c)){
+            if(c!=EOF&&!isblank(c)&&c!='\n') {
+                str.push_back(c);
+            }else
+                break;
+        }
+        return in;
+    }
+    //重栽加号运算符
+    string_ssr operator+(const string_ssr&lhs, const string_ssr&rhs){
+        auto res=string_ssr(lhs);
+        return res+=rhs;
+    }
+    string_ssr operator+(const string_ssr &lhs, string_ssr::const_iterator rhs) {
+        auto res=string_ssr(lhs);
+        return res+=rhs;
+    }
+    string_ssr operator+(string_ssr::const_iterator lhs, const string_ssr &rhs) {
+        auto res=string_ssr(lhs);
+        return res+=rhs;
+    }
+    string_ssr operator+(const string_ssr &lhs, string_ssr::value_type rhs) {
+        auto res=string_ssr(lhs);
+        return res+=rhs;
+    }
+    string_ssr operator+(string_ssr::value_type lhs, const string_ssr &rhs) {
+        auto res=string_ssr(1,lhs);
+        return res+=rhs;
+    }
+    //重栽==运算符
+    bool operator==(const string_ssr& lhs, const string_ssr& rhs){
+        if(lhs.size()==rhs.size()){
+            for(auto lit=lhs.begin(),rit=rhs.begin();lit!=lhs.end()&&rit!=rhs.end();++lit,++rit){
+                if(*lit!=*rit)
+                    return false;
+            }
+            return true;
+        }
+        return false;
+    }
+    bool operator==(const string_ssr &lhs, string_ssr::const_iterator rhs) {
+        string_ssr::size_type len=strlen(rhs);
+        if(lhs.size()==len){
+            auto p=rhs;
+            for(auto lit=lhs.begin();lit!=lhs.end()&&p!=rhs+len;++lit,++p){
+                if(*lit!=*p)
+                    return false;
+            }
+            return true;
+        }
+        return false;
+    }
+    bool operator==(string_ssr::const_iterator lhs, const string_ssr& rhs){
+        return rhs==lhs;
+    }
+    //重栽!=运算符
+    bool operator!=(const string_ssr& lhs, const string_ssr& rhs){
+        return !(lhs==rhs);
+    }
+    bool operator!=(const string_ssr &lhs, string_ssr::const_iterator rhs) {
+        return !(lhs==rhs);
+    }
+    bool operator!=(string_ssr::const_iterator lhs, const string_ssr& rhs){
+        return !(lhs==rhs);
+    }
+    namespace {
+        template <class Iterator1, class Iterator2>
+        bool lessEqual_aux(Iterator1 first1, Iterator1 last1, Iterator2 first2, Iterator2 last2){
+            for(;first1!=last1&&first2!=last2;++first1,++first2){
+                if(*first1<*first2)
+                    return true;
+                else if(*first1>*first2)
+                    return false;
+            }
+            if(first1==last1)
+                return true;
+            else
+                return false;
+        };
+    }
+    //重栽<,>,<=,>=运算符
+    bool operator<=(const string_ssr& lhs, const string_ssr& rhs){
+        return lessEqual_aux(lhs.begin(),lhs.end(),rhs.begin(),rhs.end());
+    }
+    bool operator<=(const string_ssr& lhs, string_ssr::const_iterator rhs){
+        return lessEqual_aux(lhs.begin(),lhs.end(),rhs,rhs+strlen(rhs));
+    }
+    bool operator<=(string_ssr::const_iterator lhs, const string_ssr& rhs){
+        return lessEqual_aux(lhs,lhs+strlen(lhs),rhs.begin(),rhs.end());
+    }
+    bool operator>(const string_ssr &lhs, const string_ssr &rhs) {
+        return !(lhs<=rhs);
+    }
+    bool operator>(const string_ssr &lhs, string_ssr::const_iterator rhs) {
+        return !(lhs<=rhs);
+    }
+    bool operator>(string_ssr::const_iterator lhs, const string_ssr& rhs){
+        return !(lhs<=rhs);
+    }
+    namespace {
+        template <class Iterator1, class Iterator2>
+        bool greatEqual_aux(Iterator1 first1, Iterator1 last1, Iterator2 first2, Iterator2 last2){
+            for(;first1!=last1&&first2!=last2;++first1,++first2){
+                if(*first1>*first2)
+                    return true;
+                else if(*first1<*first2)
+                    return false;
+            }
+            if(first2==last2)
+                return true;
+            else
+                return false;
+        };
+    }
+    bool operator>=(const string_ssr& lhs, const string_ssr& rhs){
+        return greatEqual_aux(lhs.begin(),lhs.end(),rhs.begin(),rhs.end());
+    }
+    bool operator>=(const string_ssr& lhs, string_ssr::const_iterator rhs){
+        return greatEqual_aux(lhs.begin(),lhs.end(),rhs,rhs+strlen(rhs));
+    }
+    bool operator>=(string_ssr::const_iterator lhs, const string_ssr& rhs){
+        return greatEqual_aux(lhs,lhs+strlen(lhs),rhs.begin(),rhs.end());
+    }
+    bool operator<(const string_ssr &lhs, const string_ssr &rhs) {
+        return !(lhs>=rhs);
+    }
+    bool operator<(const string_ssr &lhs, string_ssr::const_iterator rhs) {
+        return !(lhs>=rhs);
+    }
+    bool operator<(string_ssr::const_iterator lhs, const string_ssr& rhs){
+        return !(lhs>=rhs);
+    }
+    //insert()函数
+    string_ssr &string_ssr::insert(string_ssr::size_type position, const string_ssr &str) {
+        insert(start_+position,str.begin(),str.end());
+        return *this;
+    }
+    string_ssr &string_ssr::insert(string_ssr::size_type position, const string_ssr &str, string_ssr::size_type subpos, string_ssr::size_type sublen) {
+        sublen = changeVarWhenEqualNPOS(sublen, str.size(), subpos);
+        insert(start_+position,str.begin()+subpos,str.begin()+subpos+sublen);
+        return *this;
+    }
+    string_ssr& string_ssr::insert(size_type position, const_iterator s) {
+        insert(start_+position,s,s+strlen(s));
+        return *this;
+    }
+    string_ssr& string_ssr::insert(size_type position, const_iterator s,size_type n) {
+        insert(start_+position,s,s+n);
+        return *this;
+    }
+
+    string_ssr &string_ssr::insert(string_ssr::size_type position, string_ssr::size_type n, string_ssr::value_type c) {
+        insert(start_+position,n,c);
+        return *this;
+    }
+    string_ssr::iterator string_ssr::insert(string_ssr::iterator p, string_ssr::size_type n, string_ssr::value_type c) {
+        auto lengthOfleft=capacity()-size();
+        if(n<=lengthOfleft){
+            for(auto it=finish_-1;it>=p;--it){
+                *(it+n)=*it;
+            }
+            SSRSTL::uninitialized_fill_n(p,n,c);
+            finish_+=n;
+            return p+n;
+        }else{
+            return insert_aux_filln(p,n,c);
+        }
+    }
+    string_ssr::iterator string_ssr::insert(string_ssr::iterator p, string_ssr::value_type c) {
+        return insert(p,1,c);
+    }
+
+    //append()函数
+    string_ssr &string_ssr::append(const string_ssr &str) {
+        *this+=str;
+        return *this;
+    }
+    string_ssr &string_ssr::append(const string_ssr &str, string_ssr::size_type subpos, string_ssr::size_type sublen) {
+        sublen=changeVarWhenEqualNPOS(sublen,str.size(),subpos);
+        insert(size(),str,subpos,sublen);
+        return *this;
+    }
+    string_ssr &string_ssr::append(string_ssr::const_iterator s) {
+        *this+=s;
+        return *this;
+    }
+    string_ssr &string_ssr::append(string_ssr::const_iterator s, string_ssr::size_type n) {
+        insert(size(),s,n);
+        return *this;
+    }
+    string_ssr &string_ssr::append(string_ssr::value_type c) {
+        *this+=c;
+        return *this;
+    }
+    string_ssr &string_ssr::append(string_ssr::size_type n, string_ssr::value_type c) {
+        insert(size(),n,c);
+        return *this;
+    }
+    //erase()函数
     
 }
 

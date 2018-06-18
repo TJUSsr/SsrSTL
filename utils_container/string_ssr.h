@@ -84,12 +84,11 @@ namespace SSRSTL{
         //复制构造函数
         string_ssr(const string_ssr&str);
         //移动构造函数
-        string_ssr(string_ssr&& str);
+        string_ssr(string_ssr&& str) noexcept;
 
         //重栽=运算符
         string_ssr& operator=(const string_ssr& str);
         string_ssr& operator=(string_ssr&& str);
-        string_ssr& operator=(std::string&& str);
         string_ssr& operator=(const_iterator s);
         string_ssr& operator=(value_type c);
 
@@ -144,24 +143,21 @@ namespace SSRSTL{
          * */
         //insert返回string_ssr&或者 iterator
         string_ssr& insert(size_type position, const string_ssr& str);
-        string_ssr& insert(size_type position, const std::string& str);
         string_ssr& insert(size_type position, const string_ssr& str, size_type subpos, size_type sublen=npos);
-        string_ssr& insert(size_type position, const std::string& str, size_type subpos, size_type sublen=npos);
         string_ssr& insert(size_type position, const_iterator s);
         string_ssr& insert(size_type position, const_iterator s, size_type n);
-        iterator insert(iterator p, size_type n, char c);
-        iterator insert(iterator p, char c);
+        string_ssr& insert(size_type position, size_type n, value_type c);
+        iterator insert(iterator p, size_type n, value_type c);
+        iterator insert(iterator p, value_type c);
         template <class InputIterator>
         iterator insert(iterator p, InputIterator first, InputIterator last);
 
         string_ssr& append(const string_ssr& str);
-        string_ssr& append(const std::string& str);
         string_ssr& append(const string_ssr& str, size_type subpos, size_type sublen=npos);
-        string_ssr& append(const std::string& str, size_type subpos, size_type sublen=npos);
         string_ssr& append(const_iterator s);
         string_ssr& append(const_iterator s, size_type n);
-        string_ssr& append(char c);
-        string_ssr& append(size_type n, char c);
+        string_ssr& append(value_type c);
+        string_ssr& append(size_type n, value_type c);
         template<class InputIterator>
         string_ssr& append(InputIterator first, InputIterator last);
 
@@ -270,13 +266,13 @@ namespace SSRSTL{
     public:
         //一些友元函数
         friend std::ostream& operator<<(std::ostream& out, const string_ssr& str);
-        friend std::istream& operator>>(std::istream& in, const string_ssr& str);
+        friend std::istream& operator>>(std::istream& in, string_ssr& str);
 
-        friend string_ssr& operator+(const string_ssr& lhs, const string_ssr& rhs);
-        friend string_ssr& operator+(const string_ssr& lhs, const_iterator rhs);
-        friend string_ssr& operator+(const_iterator lhs, const string_ssr& rhs);
-        friend string_ssr& operator+(const string_ssr& lhs, value_type rhs);
-        friend string_ssr& operator+(value_type lhs, const string_ssr& rhs);
+        friend string_ssr operator+(const string_ssr& lhs, const string_ssr& rhs);
+        friend string_ssr operator+(const string_ssr& lhs, const_iterator rhs);
+        friend string_ssr operator+(const_iterator lhs, const string_ssr& rhs);
+        friend string_ssr operator+(const string_ssr& lhs, value_type rhs);
+        friend string_ssr operator+(value_type lhs, const string_ssr& rhs);
 
         friend bool operator==(const string_ssr& lhs, const string_ssr& rhs);
         friend bool operator==(const string_ssr& lhs, const_iterator rhs);
