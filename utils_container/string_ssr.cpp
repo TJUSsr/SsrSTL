@@ -465,9 +465,12 @@ namespace SSRSTL {
     string_ssr &string_ssr::replace(string_ssr::size_type position, string_ssr::size_type len, const string_ssr &str) {
         return replace(begin()+position,begin()+position+len,str.begin(),str.end());
     }
-
     string_ssr &string_ssr::replace(string_ssr::iterator it1, string_ssr::iterator it2, const string_ssr &str) {
         return replace(it1,it2,str.begin(),str.end());
+    }
+    string_ssr& string_ssr::replace(size_type position, size_type len, const string_ssr& str, size_type subpos, size_type sublen){
+        sublen=changeVarWhenEqualNPOS(sublen,str.size(),subpos);
+        return replace(begin()+position,begin()+position+len,str.begin()+subpos,str.begin()+subpos+sublen);
     }
 
 }
